@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>Position</title>
+    <!-- 
+    types of position:
+    1. static position(default)
+    2. relative position
+    3. absolute position
+        a. absolute to root/browser
+        b. absolute to parent
+    4. sticky position
+    5. fixed position
+    -->
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .parent{
+            width: 50%;
+            height: 700px;
+            background-color: red;
+            position: relative;
+        }
+
+        .container {
+            width: 300px;
+            height: 300px;
+            background-color: green;
+            
+            /* position: relative; */
+            /* top, right, bottom, left */
+            /* right: 250px; */
+
+            position: absolute;
+            right: 0;
+            /* bottom: 0; */
+        }
+        .sticky{
+            width: 100%;
+            height: 50px;
+            background-color: black;
+            position: sticky;
+            top: 0;
+            bottom: 0;
+        }
+        .scroll{
+            width: 50%;
+            height: 1500px;
+            background-color: blue;
+        }
+        .fixed{
+            width: 400px;
+            height:300px;
+            background-color: violet;
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="container"></div>
+        <div class="fixed"></div>
+    </div>
+    <div class="sticky"></div>
+    <div class="scroll"></div>
+</body>
+
+</html>

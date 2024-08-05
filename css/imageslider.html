@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>image slider</title>
+    <style>
+        p {
+            font-size: 30px;
+        }
+
+        .parent {
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            background-color: red;
+            position: relative;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .previous {
+            position: absolute;
+            top: 40%;
+        }
+
+        .next {
+            position: absolute;
+            right: 0;
+            top: 40%;
+        }
+
+        .previous:hover {
+            color: red;
+            cursor: pointer;
+        }
+
+        .next:hover {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img src="https://imgs.search.brave.com/4hVSiiJ8KQpDgrfYZEv2XLRm_mkgf50mTQJzFhFx040/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mb3Nz/aWwuc2NlbmU3LmNv/bS9pcy9pbWFnZS9G/b3NzaWxQYXJ0bmVy/cy9BWDI2MDBfbWFp/bj8kc2ZjY19mb3Nf/bWVkaXVtJA"
+            alt="">
+        <p class="previous">&lt;</p>
+        <p class="next">&gt;</p>
+    </div>
+</body>
+
+</html>
