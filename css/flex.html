@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>
+        Flex
+    </title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 600px;
+            background-color: yellowgreen;
+            display: flex;
+            flex-wrap: wrap;
+
+            /* row(default), row-reverse, column, column-reverse */
+            /* flex-direction: column-reverse; */
+
+            /* start, end, center, space-evenly, space-around, space-between */
+            justify-content: space-around;
+            align-content: space-between;
+        }
+
+        .flex {
+            width: 150px;
+            height: 150px;
+            background-color: blueviolet;
+            /* margin: 10px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="flex">division 1</div>
+        <div class="flex">division 2</div>
+        <div class="flex">division 3</div>
+        <div class="flex">division 4</div>
+        <div class="flex">division 5</div>
+        <div class="flex">division 6</div>
+        <div class="flex">division 7</div>
+        <div class="flex">division 8</div>
+        <div class="flex">division 9</div>
+        <div class="flex">division 10</div>
+        <div class="flex">division 11</div>
+        <div class="flex">division 12</div>
+        <div class="flex">division 13</div>
+        <div class="flex">division 14</div>
+    </div>
+</body>
+
+</html>
