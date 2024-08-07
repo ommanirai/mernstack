@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>combinator</title>
+    <!-- 
+    types of combinator
+    1. grouping combinator(,)
+    2. descendent combinator(space)
+    3. child combinator(>)
+    4. general sibling combinator
+    5. adjacent sibling combinator
+    -->
+    <style>
+        /* grouping combinator */
+        /* h1,
+        p,
+        .demo {
+            color: red;
+        } */
+
+        /* descendent combinator */
+        /* .container div {
+            background-color: green;
+        } */
+
+        /* child combinator */
+        .parent>div {
+            background-color: rgb(155, 104, 17);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">child 1
+            <div class="grand-child">grand child 1</div>
+        </div>
+        <div class="child">child 2</div>
+        <div class="child">child 3
+            <div class="grand-child">grand child 1</div>
+            <div class="grand-child">grand child 2</div>
+            <div class="grand-child">grand child 3</div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum soluta tenetur nemo a voluptatem ipsa natus
+            enim dignissimos voluptatum eum. Asperiores ea reiciendis distinctio culpa, consequuntur dolorum laborum
+            velit? Molestias!</div>
+    </div>
+
+
+    <div class="demo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae at soluta rerum culpa quasi quam
+        iure. Debitis libero officia quod doloribus quibusdam deserunt enim. Dolore aspernatur incidunt animi
+        necessitatibus dicta.</div>
+    <h1>heading</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, cumque, magnam nulla eum ducimus nobis sunt
+        porro architecto, dolorum consequatur culpa voluptas eos quidem labore nihil? Accusantium ratione suscipit odio.
+    </p>
+</body>
+
+</html>

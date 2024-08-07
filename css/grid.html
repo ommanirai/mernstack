@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            /* grid-template-rows: auto auto auto auto;
+            grid-template-columns: auto auto auto; */
+
+            /* 
+            vh => viewport height, => 100vh
+            vw => viewport width => 100vw
+            */
+            grid-template-rows: 10vh 40vh 40vh 10vh;
+            grid-template-columns: 15vw 35vw 50vw;
+        }
+
+        .header {
+            background-color: red;
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+
+        .left {
+            grid-row-start: 2;
+            grid-row-end: 4;
+            background-color: rgb(155, 108, 38);
+        }
+
+        .right-top {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            background-color: yellowgreen;
+        }
+
+        .right-bottom-left {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            background-color: violet;
+        }
+
+        .right-bottom-right {
+            grid-column-start: 3;
+            grid-column-end: 4;
+            background-color: turquoise;
+        }
+
+        .footer {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            background-color: brown;
+        }
+
+        ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            grid-template-rows: auto;
+        }
+        li{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <ul>
+                <li>Home</li>
+                <li>Product</li>
+                <li>Gallery</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+        <div class="footer">footer division</div>
+        <div class="left">left division</div>
+        <div class="right-top">right top division</div>
+        <div class="right-bottom-left">right bottom left division</div>
+        <div class="right-bottom-right">right bottom right division</div>
+    </div>
+</body>
+
+</html>
