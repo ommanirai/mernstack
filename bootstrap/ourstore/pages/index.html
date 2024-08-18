@@ -11,6 +11,18 @@
 
     <!-- bootstrap icon cdn link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .img-hover:hover {
+            transform: scale(2);
+            transition: 5s;
+            cursor: pointer;
+        }
+
+        .custom-img {
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +45,6 @@
     </div>
     <nav class="navbar navbar-expand-lg bg-secondary">
         <div class="container-fluid">
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -92,44 +103,107 @@
     </div>
     <!-- image slider end -->
     <!-- product demo start -->
-    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-5">
-        <div class="col">
-            <div class="card">
-                <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvZjY0ZTRlOGJhNDU0ZGQzY2E5YjAyNjc2YWI4MWRiZmQuanBn_400x400q75.png_.webp" class="card-img-top" alt="..." height="200px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+    <div class="container">
+        <h4 class="text-decoration-underline text-muted">Most Popular</h4>
+        <div class="row row-cols-2 row-cols-md-4 g-5">
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="custom-img">
+                        <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvZjY0ZTRlOGJhNDU0ZGQzY2E5YjAyNjc2YWI4MWRiZmQuanBn_400x400q75.png_.webp"
+                            class="card-img-top img-hover" alt="..." height="200px">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Redmi 13 pro</h5>
+                        <h6>Rs. 40,000</h6>
+                        <p class="card-text text-truncate">This is a longer card with supporting text below as a natural
+                            lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <div class="rating text-center mb-2 text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvY2ViYmU0YmZkMGViZmY4M2E5NWFkY2Y3NDMxM2FiNTIuanBn_400x400q75.png_.webp" class="card-img-top" alt="..." height="200px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="custom-img">
+                        <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvZjY0ZTRlOGJhNDU0ZGQzY2E5YjAyNjc2YWI4MWRiZmQuanBn_400x400q75.png_.webp"
+                            class="card-img-top img-hover" alt="..." height="200px">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Redmi 13 pro</h5>
+                        <h6>Rs. 40,000</h6>
+                        <p class="card-text text-truncate">This is a longer card with supporting text below as a natural
+                            lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <div class="rating text-center mb-2 text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://imgs.search.brave.com/39oHGPmsjQjUCG8NN5-qusd-7XYiCuoDnhg9xutzezk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOC8w/MS8xMS8yMS8yNy9k/ZXNrLTMwNzY5NTRf/NjQwLmpwZw" class="card-img-top" alt="..." height="200px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content.</p>
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="custom-img">
+                        <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvZjY0ZTRlOGJhNDU0ZGQzY2E5YjAyNjc2YWI4MWRiZmQuanBn_400x400q75.png_.webp"
+                            class="card-img-top img-hover" alt="..." height="200px">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Redmi 13 pro</h5>
+                        <h6>Rs. 40,000</h6>
+                        <p class="card-text text-truncate">This is a longer card with supporting text below as a natural
+                            lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <div class="rating text-center mb-2 text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://imgs.search.brave.com/7mCBZ2xkwRM7R0LGNRljRgVxbflRjBrKcE7CIVxnLHY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90LW1v/YmlsZS5zY2VuZTcu/Y29tL2lzL2ltYWdl/L1RtdXNwcm9kL01U/RTItMT90cz0xNzIx/OTA2MzEyNTI2JiRw/bmd0cmFuc3BhcmVu/dCQmZm10PXBuZy1h/bHBoYSZxbHQ9ODUs/MCZyZXNNb2RlPXNo/YXJwMiZvcF91c209/MS43NSwwLjMsMiww/JmRwcj1vZmY" class="card-img-top" alt="..." height="200px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="custom-img">
+                        <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLm5wL3AvZjY0ZTRlOGJhNDU0ZGQzY2E5YjAyNjc2YWI4MWRiZmQuanBn_400x400q75.png_.webp"
+                            class="card-img-top img-hover" alt="..." height="200px">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Redmi 13 pro</h5>
+                        <h6>Rs. 40,000</h6>
+                        <p class="card-text text-truncate">This is a longer card with supporting text below as a natural
+                            lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <div class="rating text-center mb-2 text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
