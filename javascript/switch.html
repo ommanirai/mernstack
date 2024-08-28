@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch</title>
+</head>
+
+<body>
+    <h1>switch</h1>
+    <script>
+        /*
+        switch
+        syntax:
+        symbol = +,-
+        switch(case){
+            case 1:
+                body of case 1
+                break;
+            case 2:
+                body of case 2
+                break;
+            case n:
+                body of case n
+                break;
+            default:
+                body of default
+        }
+        */
+        var num1 = Number(prompt("enter first number"));
+        var symbol = prompt("enter symbol");
+        var num2 = Number(prompt("enter second number"));
+
+        switch(symbol){
+            case '+':
+                var sum = num1 + num2;
+                document.write(sum);
+                break;
+            case '-':
+                var diff = num1 - num2;
+                document.write(diff);
+                break;
+            case '/':
+
+            case '*':
+
+            case '^':
+                // 2^5
+                var power = Math.pow(num1, num2)
+                document.write(power)
+                break;
+            case "sqrt":
+                var square_root = Math.sqrt(num1)
+                document.write(square_root)
+                break;
+
+            default:
+                document.write("invalid symbol, please enter a valid symbol");
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
