@@ -8,7 +8,7 @@ for(initialization;condition;increment/decrement){
 }
 
 # task
-# write a program(wap) to print a number from 1 to 10 using for loop
+# write a program(wap) to print a number from 1 to 10
 initialization:
 i = 1
 
@@ -47,7 +47,7 @@ var sum = 0
 var fact = 1
 // var n = Number(prompt("enter  number"))
 // for (i = 5; i >= 1; i--) {
-    for (i = 1; i < 6; i++) {
+for (i = 1; i < 6; i++) {
     // console.log(i); // 1 - 10
 
     // wap to print a collection of odd number from 1 to 10
@@ -67,7 +67,6 @@ var fact = 1
 // console.log(sum)
 // console.log(fact)
 
-
 // while
 var i = 1 // initialization
 // while(i<=10){ // condition
@@ -75,9 +74,17 @@ var i = 1 // initialization
 //     i++ // increment
 // }
 
-
 // do while
-do{
-    console.log(i)
-    i++ // increment
-}while(i<=10) // condition
+// do{
+//     console.log(i)
+//     i++ // increment
+// }while(i<=10) // condition
+
+for (i; i <= 5; i++) {
+    // i=1, 2, 3, 4,5
+    // console.log(i)
+    // nested loop
+    for (j = 1; j <= 5; j++) {
+        console.log(j)
+    }
+}
