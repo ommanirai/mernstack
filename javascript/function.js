@@ -40,5 +40,5 @@ function add(){
     console.log(n1+n2);
 }
 
-welcome();
-add();
+// welcome();
+// add();
