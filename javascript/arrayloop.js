@@ -44,20 +44,3 @@ number.forEach(function (item, index) {
 })
 console.log(uniqueNumber)
 
-// task 1
-// functional
-getUnieItem(bikes);
-getUnieItem(numeber);
-getUnieItem(fruits);
-
-// function getUnieItem(data){
-
-// }
-var bikes = ['honda', 'yahmaha', 'honda']
-// task 2
-var countitem={}
-// expected result
-// {
-//     honda:2,
-//     yahama:1
-// }
