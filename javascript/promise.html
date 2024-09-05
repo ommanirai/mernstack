@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+
+<body>
+    <h1>promise in js</h1>
+    <script>
+        var fruits = ['apple', 'kiwi', 'mango', 'papaya']
+        function displayList() {
+            setTimeout(function () {
+                fruits.map(function (item, index) {
+                    return document.write(item, "<br>")
+                })
+            }, 3000)
+        }
+
+        function addFruits() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    var condition = true;
+                    if (condition) {
+                        fruits.push("strawberry")
+                        resolve()
+                    }
+                    else {
+                        reject()
+                    }
+                }, 4000)
+            })
+        }
+
+        displayList()
+        addFruits()
+            .then(function () {
+                displayList()
+            })
+            .catch(function () {
+                console.log("error in push item")
+            })
+
+    </script>
+</body>
+
+</html>

@@ -98,6 +98,6 @@ var findResult = laptops.find(function(item, index){
 
 // reduce
 laptops.reduce(function(acc, item, index, source){
-    console.log(source)
+    console.log(source);
     return 1;
 }, 12)

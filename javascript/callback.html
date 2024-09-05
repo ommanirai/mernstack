@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback</title>
+</head>
+
+<body>
+    <h1>callback in js</h1>
+    <script>
+        var fruits = ['apple', 'kiwi', 'mango', 'papaya']
+        function displayList() {
+            setTimeout(function () {
+                fruits.map(function (item, index) {
+                    return document.write(item, "<br>")
+                })
+            }, 3000)
+        }
+
+        function addFruits(cb){
+            setTimeout(function(){
+                fruits.push("strawberry")
+                cb()
+            }, 4000)
+        }
+
+
+        displayList()
+        addFruits(displayList)
+    </script>
+</body>
+
+</html>
