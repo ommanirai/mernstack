@@ -128,5 +128,34 @@ const dataResult = main_data => {
 }
 
 var { data2, ...rest } = dataResult(main_data)
-console.log(data2)
-console.log(rest)
+// console.log(data2)
+// console.log(rest)
+
+
+// import and export
+// file to file communication
+
+// export
+/*
+function Demo(){}
+1. named export
+export function Demo(){}
+export const MyFunction = Demo
+
+2. default export
+export default function Demo(){}
+
+import
+1. if named export
+import {Demo, MyFunction} from './location_of_file'
+import {MyFunction} from './location_of_file'
+
+2. if default export
+import App from './location_of_file'
+
+3. if both named and default export
+import {Demo, MyFunction}, App from './location_of_file'
+
+
+
+*/
