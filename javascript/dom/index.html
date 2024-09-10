@@ -10,13 +10,12 @@
 <body>
     <h1 class="random">Document Object Model</h1>
     <img src="" alt="" id="" class="">
+    <div id="division">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
     <script>
         /*
         DOM => document object model
         method
         property
-        
-        
         */
         console.log(document)
         //    document.querySelector('h1').innerHTML = 'hi'
@@ -24,7 +23,7 @@
         var heading_first = document.createElement("h1")
         body.append(heading_first)
         heading_first.setAttribute("id", 'test')
-        heading_first.id = 'hello'  
+        heading_first.id = 'hello'
 
         heading_first.removeAttribute("id")
 
@@ -33,13 +32,14 @@
         // document.querySelector("#hello").textContent = "hello from id"
         // document.getElementById("hello").textContent = 'random text'
 
-
         var selectClass = document.getElementsByClassName('random')[0]
         // console.log(selectClass)
         // nodelist
 
         selectClass.textContent = 'lorem ipsum dolor sit'
-
+        document.getElementById("division").style.width = "400px"
+        document.getElementById("division").style.height = "400px"
+        document.getElementById("division").style.backgroundColor = "red"
 
     </script>
 </body>

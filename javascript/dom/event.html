@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- onkeyup="keyUp()" -->
+    <input type="text" id="text-data" onchange="formText()" onkeydown="keyUp()">
+    <div id="container"></div>
+    <button onclick="changeMe()" onmouseover="mouseOver()" onmouseout="mouseOut()">click me</button>
+    <script>
+
+        function keyUp() {
+            var data = document.getElementById("text-data").value;
+            document.getElementById("container").innerText = data;
+        }
+
+        function formText() {
+            var data = document.getElementById("text-data").value;
+            document.getElementById("container").innerText = data;
+        }
+
+        function changeMe() {
+            document.getElementById("container").style.backgroundColor = "red"
+            document.getElementById("container").innerText = "good morning!!!"
+        }
+
+        function mouseOver() {
+            document.getElementById("container").style.backgroundColor = "black"
+        }
+
+        function mouseOut() {
+            document.getElementById("container").style.backgroundColor = "yellow"
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
