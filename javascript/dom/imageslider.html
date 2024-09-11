@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>image slider</title>
+    <style>
+        p {
+            font-size: 30px;
+        }
+
+        .parent {
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            background-color: red;
+            position: relative;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .previous {
+            position: absolute;
+            top: 40%;
+        }
+
+        .next {
+            position: absolute;
+            right: 0;
+            top: 40%;
+        }
+
+        .previous:hover {
+            color: red;
+            cursor: pointer;
+        }
+
+        .next:hover {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img src="https://imgs.search.brave.com/4hVSiiJ8KQpDgrfYZEv2XLRm_mkgf50mTQJzFhFx040/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mb3Nz/aWwuc2NlbmU3LmNv/bS9pcy9pbWFnZS9G/b3NzaWxQYXJ0bmVy/cy9BWDI2MDBfbWFp/bj8kc2ZjY19mb3Nf/bWVkaXVtJA"
+            alt="" id="slider-image">
+        <p class="previous" onclick="previous()">&lt;</p>
+        <p class="next" onclick="next()">&gt;</p>
+    </div>
+    <script>
+        var image_collection = [
+            "https://imgs.search.brave.com/JFglnjkW9L5j2075GnH-5ZNaxftxex7IdlbCzsuX6nw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjk3/MTczNzQ2L3Bob3Rv/L2x1eHVyeS13YXRj/aC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9R2FmQm1vb1Zi/Vk4tSGtOTi1uZlpx/Ql9PR2wzc1NuZk93/U0Q5WTh4SWlxdz0",
+
+            'https://imgs.search.brave.com/baMS3SDsOzxxOLPn426Am0ExatuKeZqHcmg0Q_xbJZI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTcy/MzgwMTQ2L3Bob3Rv/L2dvbGQtd2F0Y2gu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PS1kN2xENzNqcnhD/MV9BWWhSbnk4SGZ4/R0podjdpRmZlbzZN/ZXZWdFY0d0k9'
+        ]
+        var index = 0;
+        function next() {
+            document.getElementById("slider-image").src = image_collection[index]
+            index++;
+            if (index === image_collection.length) {
+                index = 0;
+            }
+        }
+        function previous(){
+            index--;
+            if(index<0){
+                index = image_collection.length - 1;
+            }
+            document.getElementById("slider-image").src = image_collection[index]
+        }
+        setInterval(next,2000)
+
+    </script>
+</body>
+
+</html>

@@ -15,9 +15,49 @@
         alt="" width="300px" height="300px" id="on-off">
     <!-- <button onclick="lighton()">on</button>
     <button onclick="lightoff()">off</button> -->
-    <button>on</button>
+    <button onclick="lightOnOff()" id="light-on-off">on</button>
+
+    <br>
+    <br>    
+    <input type="password" id="form-type">
+    <span onclick="showHide()" id="status">show</span>
 
     <script>
+        function showHide(){
+            if(document.getElementById("status").innerHTML === "show"){
+                document.getElementById("form-type").type = 'text'
+                document.getElementById("status").innerHTML = "hide"
+            }
+            else{
+                 document.getElementById("form-type").type = 'password'
+                document.getElementById("status").innerHTML = "show"
+            }
+        }
+
+
+
+
+
+
+
+        function lightOnOff() {
+            var light = document.getElementById("light-on-off").innerHTML
+            if (light === 'on') {
+                document.getElementById("on-off").src = "https://imgs.search.brave.com/2SVnjAeDpnrhULCSRLes4fIVdkNb0BSPOvokT_wscXI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTIy/ODUxNjgyL3Bob3Rv/L2xlZC1idWxiLW9u/LXdoaXRlLWJhY2tn/cm91bmQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUZlcDVw/a21NYWdyVEtiOWdq/MnIxb0h4bmdVQ00z/SkpqYUotN1B1RTBa/OHM9"
+                document.getElementById("light-on-off").innerHTML = "off"
+            }
+            else {
+                document.getElementById("on-off").src = 'https://imgs.search.brave.com/HQ3RLd9QT-ZOyPkbeAQS4ZPYi-BTd2SVL3RNQaiB34w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTAy/Nzg5MTczL3Bob3Rv/L2xpZ2h0LWJ1bGIt/Y29uY2VwdC5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9dkpm/U0R1RkpmXzRVc1Fj/VXNkTU5VZkRra05V/NkJmOWNUSEYtbjQt/Wnd2cz0'
+                document.getElementById("light-on-off").innerHTML = 'on'
+            }
+        }
+
+
+
+
+
+
+
         function lighton() {
             document.getElementById("on-off").src = "https://imgs.search.brave.com/2SVnjAeDpnrhULCSRLes4fIVdkNb0BSPOvokT_wscXI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTIy/ODUxNjgyL3Bob3Rv/L2xlZC1idWxiLW9u/LXdoaXRlLWJhY2tn/cm91bmQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUZlcDVw/a21NYWdyVEtiOWdq/MnIxb0h4bmdVQ00z/SkpqYUotN1B1RTBa/OHM9"
         }
@@ -31,4 +71,4 @@
 </html>
 
 <!-- dark mode/default mode -->
- <!-- password show/hide -->
+<!-- password show/hide -->
