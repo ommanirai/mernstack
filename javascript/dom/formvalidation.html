@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="username">Username</label>
+        <input type="text" id="username" onkeyup="usernameValidation()">
+        <span id="username-error"></span>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function usernameValidation() {
+            var username = document.getElementById("username").value;
+            // console.log(username);
+            if (username === "") {
+                document.getElementById("username-error").innerHTML = "required field"
+                document.getElementById("username-error").style.color = 'red'
+            }
+            else if (username.match(/[0-9]+/)) {
+                document.getElementById("username-error").innerHTML = "username must not contain number"
+                document.getElementById("username-error").style.color = 'red'
+            }
+            else if (username.match(/[!@#$%^&*]+/)) {
+                document.getElementById("username-error").innerHTML = "username must not contain  special character"
+                document.getElementById("username-error").style.color = 'red'
+            }
+            else if (username.length < 4) {
+                document.getElementById("username-error").innerHTML = "username must contain atleast 4 character"
+                document.getElementById("username-error").style.color = 'red'
+            }
+            else {
+                displayMsg("username-error", 'green', "valid username")
+            }
+        }
+
+
+        function displayMsg(id, color, msg) {
+            document.getElementById(id).innerHTML = msg
+            document.getElementById(id).style.color = color
+        }
+
+
+
+
+        // Regular Expression
+        /*
+        Regular expression
+        /[hi]/
+        /../  - regular expression literal
+        /(text)/ - regular expression
+        [] - single character
+        /abc/ - exact match
+        /[abc]/ - collection of a, b, c
+        /[a-z]/ - collection of lowercase alphabets
+        /[A-Z]/ - collection of uppercase alphabets
+        /[a-zA-Z]/ - collection of lowercase and uppercase alphabets
+        /[0-9]/ - collection of numbers 0-9
+        /[a-zA-Z0-9]/ - collection of lowercase, uppercase alphabets and numbers
+        /[_\-\.@@#$%^^&]/ - special characters
+
+        /^(98||97)/
+        /(@gmail.com)$/
+        metacharacters:
+        ^ - start
+        $ - end
+        [a-z]+
+        []+ => at least one (one or more)
+        [a-z]? => one or none
+        []* => 0 or multiple
+        []{8} - minimum n number of characters
+        []{n,m} - at least n, at most m characters
+        []{n,} - at least n characters
+        (abc) - compulsory
+        
+        [0-9]
+        [/d]
+        /d - numbers, 0-9
+        /D - not number
+        /w - alphanumeric characters, a-z, A-Z, 0-9
+        /W - not alphanumeric characters
+        /s - special characters
+        /S - not special characters
+
+
+        mobile number - 10digits, starts with 98
+        /^(98)[0-9]+{8}$/
+
+        ommanirai27@gmail.com
+    
+        email - /^[a-z]+[a-z0-9_.\-]+(@)[a-z]+(.com)$/
+
+        password - [a-z]+[A-Z]+[0-9]+[\/.@!#$%^&*]+{8, 30}
+
+        */
+
+
+
+    </script>
+</body>
+
+</html>

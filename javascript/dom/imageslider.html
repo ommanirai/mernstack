@@ -64,14 +64,15 @@
                 index = 0;
             }
         }
-        function previous(){
+        function previous() {
             index--;
-            if(index<0){
+            if (index < 0) {
                 index = image_collection.length - 1;
             }
             document.getElementById("slider-image").src = image_collection[index]
         }
-        setInterval(next,2000)
+
+        setInterval(next, 2000)
 
     </script>
 </body>
