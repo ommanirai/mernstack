@@ -8,38 +8,100 @@
 </head>
 
 <body>
-    <form action="">
+    <form action="" onsubmit="return validateForm()">
         <label for="username">Username</label>
         <input type="text" id="username" onkeyup="usernameValidation()">
         <span id="username-error"></span>
         <br><br>
+        <label for="password">Password</label>
+        <input type="text" id="password" onkeyup="passwordValidation()">
+        <span id="password-error"></span>
+        <br><br>
         <button type="submit">Submit</button>
     </form>
     <script>
+        function validateForm() {
+            if (usernameValidation() && passwordValidation()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        function passwordValidation() {
+            var password = document.getElementById("password").value;
+            if (password === "") {
+                displayMsg("password-error", "red", "required field")
+                return false;
+            }
+            else if (!password.match(/[a-z]+/)) {
+                displayMsg("password-error", "red", "password must contain atleast one lowercase alphabet")
+                return false;
+            }
+            else if (!password.match(/[A-Z]+/)) {
+                displayMsg("password-error", "red", "password must contain atleast one uppercase alphabet")
+                return false;
+            }
+            else if (!password.match(/[0-9]+/)) {
+                displayMsg("password-error", "red", "password must contain atleast one number")
+                return false;
+            }
+            else if (!password.match(/[!@#$%^&*()]+/)) {
+                displayMsg("password-error", "red", "password must contain atleast one special character")
+                return false;
+            }
+            else if (password.length < 8) {
+                displayMsg("password-error", "red", "weak password")
+                return false;
+            }
+            else if (password.length >= 8 && password.length <= 20) {
+                displayMsg("password-error", "green", "strong/valid password")
+                return true;
+            }
+            else if (password.length > 20) {
+                displayMsg("password-error", "red", "password must contain maximum 15 character")
+                return false;
+            }
+            else {
+                // displayMsg("password-error", "green", "valid password")
+            }
+        }
+
+
+
+
+
+
         function usernameValidation() {
             var username = document.getElementById("username").value;
             // console.log(username);
             if (username === "") {
                 document.getElementById("username-error").innerHTML = "required field"
                 document.getElementById("username-error").style.color = 'red'
+                return false;
             }
             else if (username.match(/[0-9]+/)) {
                 document.getElementById("username-error").innerHTML = "username must not contain number"
                 document.getElementById("username-error").style.color = 'red'
+                return false;
             }
             else if (username.match(/[!@#$%^&*]+/)) {
                 document.getElementById("username-error").innerHTML = "username must not contain  special character"
                 document.getElementById("username-error").style.color = 'red'
+                return false;
             }
             else if (username.length < 4) {
                 document.getElementById("username-error").innerHTML = "username must contain atleast 4 character"
                 document.getElementById("username-error").style.color = 'red'
+                return false;
             }
             else {
                 displayMsg("username-error", 'green', "valid username")
+                return true;
             }
         }
-
 
         function displayMsg(id, color, msg) {
             document.getElementById(id).innerHTML = msg
