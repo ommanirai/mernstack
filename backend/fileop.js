@@ -61,4 +61,49 @@ function myWrite(filename, content) {
 //         console.log("error in file write: ", err)
 //     })
 
-module.exports = myWrite
+function ReadFile(filename) {
+    return new Promise(function (resolve, reject) {
+        fs.readFile("./contents/" + filename, "UTF-8", function (err, done) {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(done)
+            }
+        })
+    })
+}
+
+
+function renameFile(oldFile, newFileName) {
+    return new Promise(function (resolve, reject) {
+        fs.rename("./contents/" + oldFile, './contents/' + newFileName, function (err, done) {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(done)
+            }
+        })
+    })
+}
+
+function deleteFile(filename){
+    return new Promise(function(resolve, reject){
+        fs.unlink("./contents/"+filename, function(err, done){
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve("done")
+            }
+        })
+    })
+}
+
+module.exports = {
+    myWrite: myWrite,
+    ReadFile: ReadFile,
+    renameFile:renameFile,
+    deleteFile:deleteFile
+}

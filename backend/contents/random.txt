@@ -1,0 +1,1 @@
+calling file write module from another file
