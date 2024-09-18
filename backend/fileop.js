@@ -47,7 +47,7 @@ function myWrite(filename, content) {
                 reject(err)
             }
             else {
-                resolve("done")
+                resolve("success in file write")
             }
         })
     })
@@ -88,13 +88,13 @@ function renameFile(oldFile, newFileName) {
     })
 }
 
-function deleteFile(filename){
-    return new Promise(function(resolve, reject){
-        fs.unlink("./contents/"+filename, function(err, done){
-            if(err){
+function deleteFile(filename) {
+    return new Promise(function (resolve, reject) {
+        fs.unlink("./contents/" + filename, function (err, done) {
+            if (err) {
                 reject(err)
             }
-            else{
+            else {
                 resolve("done")
             }
         })
@@ -104,6 +104,6 @@ function deleteFile(filename){
 module.exports = {
     myWrite: myWrite,
     ReadFile: ReadFile,
-    renameFile:renameFile,
-    deleteFile:deleteFile
+    renameFile: renameFile,
+    deleteFile: deleteFile
 }
