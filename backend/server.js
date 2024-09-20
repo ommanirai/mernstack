@@ -53,13 +53,13 @@ var server = http.createServer(function (request, response) {
     }
     else if (request.url === "/write") {
         // file write
-        fileOp.myWrite("node.js", "hi from node js")
-            .then(function (done) {
-                response.end(done)
-            })
-            .catch(function (err) {
-                response.end(err)
-            })
+        // fileOp.myWrite(nodejs.txt,"hi from node js")
+        //     .then(function (done) {
+        //         response.end(done)
+        //     })
+        //     .catch(function (err) {
+        //         response.end(err)
+        //     })
     }
     else if (request.url === "/read") {
         response.end("read file");
@@ -71,7 +71,17 @@ var server = http.createServer(function (request, response) {
         response.end("file delete");
     }
     else {
-        response.end("page not found");
+        // response.end("page not found");
+        // dynamic file write
+        var filename = request.url.split('/')[2]
+        var content = request.url.split('/')[3]
+        fileOp.myWrite(filename, content)
+            .then(function (done) {
+                response.end(done)
+            })
+            .catch(function (err) {
+                response.end(err)
+            })
     }
 })
 
@@ -84,3 +94,16 @@ server.listen(8000, "localhost", function (err, done) {
         console.log("server listening at port 8000");
     }
 })
+
+
+// framework
+// sails js
+// hapi
+// express 
+
+
+// MERN
+// mongodb
+// express
+// react
+// node
