@@ -1,9 +1,45 @@
 const express = require("express")
+const morgan = require('morgan')
 
 const app = express()
 // app is now entire express framework
 
 const port = 8000;
+
+// third party middleware
+app.use(morgan('dev'))
+
+app.use("/help", function(req, res, next){
+    res.json({
+        msg:"from help page"
+    })
+})
+
+// regardless of any method and any url
+app.use(function(req, res, next){
+    console.log("from first middleware")
+
+    req.name = "vedu"
+
+    // res.json({
+    //     msg:"blocked at first middleware",
+    //     middlewareData:req.name
+    // })
+
+    // req.query
+    // req.params
+    next()
+})
+
+
+app.use(function(req, res, next){
+    res.json({
+        msg:"blocked at second middleware",
+        location:req.name
+    })
+})
+
+
 
 // handler for get method and empty url
 app.get("/", function (request, response) {
@@ -64,25 +100,34 @@ app.get("/write/:filename/:content", function (request, response) {
     response.json(request.params)
 })
 
-// app.get("*", function (req, res) {
-//     res.json({
-//         msg: "Page Not Found",
-//         status: 404
-//     })
-// })
-
-// ragardless of any method and any url
-var mid = function (req, res) {
+app.get("*", function (req, res) {
     res.json({
         msg: "Page Not Found",
         status: 404
     })
-}
-app.use(mid, function (req, res) {
-
-}, function (req, res) {
-
 })
+
+// ragardless of any method and any url
+app.use(function(req, res, next){
+    res.json({
+        msg:"Page Not Found",
+        status:404
+    })
+})
+
+
+// var mid = function (req, res) {
+//     res.json({
+//         msg: "Page Not Found",
+//         status: 404
+//     })
+// }
+
+// app.use(mid, function (req, res) {
+
+// }, function (req, res) {
+
+// })
 
 app.listen(port, function (err, done) {
     if (err) {
@@ -92,23 +137,3 @@ app.listen(port, function (err, done) {
         console.log("server listening at port: ", port);
     }
 })
-
-// middleware
-/*
-function(req, res, next){
-
-}
-
-
-
-app.use(middleware)
-
-
-app.use(function(req,res, next){
-})
-
-=> middleware is a function which has access to request object, response object and next middleware function reference
-=> middleware always came into action in between req-res cycle
-=> middleware can modify request object 
-
-*/
