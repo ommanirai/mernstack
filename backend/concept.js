@@ -22,4 +22,17 @@ types of middleware:
 4. inbuilt middleware
 5. error handling middleware
 
+
+MVC
+seperation of concern
+model
+view
+controller
+
+
+
+
+
+
+
 */

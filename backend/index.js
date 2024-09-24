@@ -1,18 +1,38 @@
-/*
-1995
-ryan dahl => 2009
+const express = require("express");
+const morgan = require('morgan');
+const authRouter = require('./controller/auth.controller');
+const userRouter = require('./controller/user.controller');
 
-node js
-framework
-library => 
-run time environment
+const app = express()
 
-npm => node package manager
+const port = 8000;
 
-file-file communication
-=> one file must export
-=> another file must import
-
+// third party middleware
+app.use(morgan('dev'))
+app.use('/auth', authRouter)
+app.use('/user', userRouter)
 
 
-*/
+app.get("*", function (req, res) {
+    res.json({
+        msg: "Page Not Found",
+        status: 404
+    })
+})
+
+app.use(function (req, res, next) {
+    res.json({
+        msg: "Page Not Found",
+        status: 404
+    })
+})
+
+
+app.listen(port, function (err, done) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("server listening at port: ", port);
+    }
+})
