@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+
+// console.log("file directory in auth: ", __dirname)
+// console.log("root directory in auth: ", process.cwd())
+
 // /auth/login
 router.get('/login', function (req, res, next) {
     res.json({
