@@ -45,14 +45,14 @@ relational dbms:
 => table based design
 => tuple/row => each record inside a table is tuple/row
 => schema based design
-=> not scalable
+=> non scalable
 => sql(structure query language) database
 => my-sql, postgres, sqllite
 
 distributed dbms:
 => document based design
-=> document is valid json(javascript object notation)
 => collection
+=> collection is valid json(javascript object notation)
 => no schema based
 => highly scalable
 =>no-sql(not only sql)
