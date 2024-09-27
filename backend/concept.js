@@ -75,10 +75,29 @@ commands:
 1. show dbs
 2. use dbname
 3. show collections
-4. db.dbname.insert({key:"value"})
-5. db.dbname.find()
+
+mongodb 
+mongoshell
+
+CRUD:
+c => create(post)
+r => read(get)
+u => update(put)
+d => delete(delete)
 
 
+
+INSERT
+db.dbname.insert({key:"value"})
+db.dbname.insertOne({key:"value"})
+
+GET/VIEW
+db.dbname.find()
+db.dbname.find(quiryBuilder)
+db.dbname.find().count()
+db.dbname.find().limit(limitCount)
+db.dbname.find().skip(skipCount)
+db.dbname.find().sort(condition)
 
 
 
