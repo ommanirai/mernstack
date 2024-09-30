@@ -15,6 +15,15 @@ const port = 8000;
 // third party middleware
 app.use(morgan('dev'))
 
+// json
+// parser for application/json
+app.use(express.json())
+
+// parser for x-www-form-urlencoded
+app.use(express.urlencoded({
+    extended: true
+}))
+
 // inbuilt middleware
 // file
 // internal serve

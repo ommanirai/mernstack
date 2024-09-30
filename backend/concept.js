@@ -87,7 +87,7 @@ d => delete(delete)
 
 
 
-INSERT
+INSERT(POST)
 db.dbname.insert({key:"value"})
 db.dbname.insertOne({key:"value"})
 
@@ -98,6 +98,22 @@ db.dbname.find().count()
 db.dbname.find().limit(limitCount)
 db.dbname.find().skip(skipCount)
 db.dbname.find().sort(condition)
+
+UPDATE(PUT)
+db.dbname.updateOne({queryBuilder}, {$set:{updateLogic}})
+
+DELETE(DELETE)
+db.dbname.remove({queryBuilder})
+
+
+client:
+request params
+request query
+request body
+
+
+
+
 
 
 
