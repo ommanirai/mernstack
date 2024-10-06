@@ -9,8 +9,23 @@
 7. reduce
 */
 var fruits = ['kiwi', 'apple', 'mango', 'apple', 'orange', "kiwi"]
-var number = [1,2,3,4,5,2,3,4,5,2]
+var number = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2]
 var bikes = ['honda', 'yahmaha', 'honda']
+
+
+fruits.forEach(function (item, index) {
+    // console.log("item inside fruits arrays is: ", item)
+    console.log("index of ", item, ' is: ', index)
+})
+
+
+
+
+
+
+
+
+
 
 // forEach
 var uniqueFruits = []
@@ -26,7 +41,7 @@ fruits.forEach(function (item, index) {
     //     uniqueFruits.push(item)
     // }
 })
-console.log(uniqueFruits)
+// console.log(uniqueFruits)
 
 
 var uniqueNumber = []
@@ -42,5 +57,5 @@ number.forEach(function (item, index) {
     //     uniqueFruits.push(item)
     // }
 })
-console.log(uniqueNumber)
+// console.log(uniqueNumber)
 

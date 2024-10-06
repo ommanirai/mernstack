@@ -50,9 +50,9 @@ relational dbms:
 => my-sql, postgres, sqllite
 
 distributed dbms:
-=> document based design
-=> collection
-=> collection is valid json(javascript object notation)
+=> collection based design
+=> document => each record inside a collection
+=> document is valid json(javascript object notation)
 => no schema based
 => highly scalable
 =>no-sql(not only sql)

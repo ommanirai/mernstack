@@ -2,7 +2,8 @@ var fruits = ['kiwi', 'apple', 'mango', 'orange', "kiwi"]
 // console.log(fruits.indexOf('kiwi'))
 // console.log(fruits.lastIndexOf('kiwi'))
 // console.log(fruits.indexOf('banana'))
-// console.log(fruits.includes('apple'))
+// console.log(fruits.indexOf('papaya'))
+// console.log(fruits.includes('apples'))
 
 // add element
 // in first position
@@ -18,9 +19,10 @@ var fruits = ['kiwi', 'apple', 'mango', 'orange', "kiwi"]
 // console.log(fruits)
 
 // slice
-// console.log(fruits.slice(1,4))
+// console.log(fruits.slice(2,4))
 
 // splice
-// fruits.splice(1,1,"kiwi", 2,3, true)
-// console.log(fruits)
+fruits.splice(1,1,"kiwi", 2,3, true)
 
+// fruits.splice(2,1,"papaya")
+console.log(fruits)
