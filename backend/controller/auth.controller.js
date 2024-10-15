@@ -46,12 +46,6 @@ router.post('/register', function (req, res, next) {
         .catch(function (err) {
             return next(err)
         })
-
-
-
-
-
-
 })
 
 
