@@ -12,6 +12,8 @@ const app = express()
 
 const port = 8000;
 
+require("./config/db")
+
 // third party middleware
 app.use(morgan('dev'))
 

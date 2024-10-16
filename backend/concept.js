@@ -113,11 +113,24 @@ request body
 
 
 
+mongodb
+schema(structure)
+data filter
+validation
 
 
+ORM => object relational mapping
+ODM => object documnet modelling
 
 
-
+mongoose
+advantages of mongoose:
+1. schema based design
+2. indexing
+required, unique
+3. middleware
+4. data type
+5. mongoose own method
 
 
 
