@@ -50,24 +50,40 @@ router.post('/register', function (req, res, next) {
 
 
 router.post("/signup", function (req, res, next) {
-    const user = new UserModel()
-    // user is now mongoose object
-    user.username = req.body.username
-    user.email = req.body.email
-    user.password = req.body.password // TODO: hash password
-    user.dob = req.body.date_of_birth
-    user.gender = req.body.gender
+    UserModel.find({
+        email: req.body.email
+    })
+        .then(function (user) {
+            if (user[0]) {
+                return next({
+                    msg: "Email Already Exist/User already registered",
+                    status: 404
+                })
+            }
+            if (!user[0]) {
+                const user = new UserModel()
+                // user is now mongoose object
+                user.username = req.body.username
+                user.email = req.body.email
+                user.password = req.body.password // TODO: hash password
+                user.dob = req.body.date_of_birth
+                user.gender = req.body.gender
 
-    if (!user.address) {
-        user.address = {}
-    }
+                if (!user.address) {
+                    user.address = {}
+                }
 
-    user.address.temporaryAddress = req.body.temporary_address
-    user.address.permanentAddress = req.body.permanent_address
+                user.address.temporaryAddress = req.body.temporary_address.split(",")
+                user.address.permanentAddress = req.body.permanent_address
 
-    user.save()
-        .then(function (newUser) {
-            res.json(newUser)
+                user.save()
+                    .then(function (newUser) {
+                        res.json(newUser)
+                    })
+                    .catch(function (err) {
+                        return next(err)
+                    })
+            }
         })
         .catch(function (err) {
             return next(err)
