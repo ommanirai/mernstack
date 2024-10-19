@@ -116,7 +116,6 @@ router.route("/:user_id")
             .catch(function (err) {
                 return next(err)
             })
-
     })
     .delete(function (req, res, next) {
         mongoClient.connect(conxnURL)

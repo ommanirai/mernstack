@@ -48,7 +48,6 @@ router.post('/register', function (req, res, next) {
         })
 })
 
-
 router.post("/signup", function (req, res, next) {
     UserModel.find({
         email: req.body.email
