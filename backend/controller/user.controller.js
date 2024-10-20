@@ -65,10 +65,6 @@ router.get('/view', function (req, res, next) {
 
 
 
-
-
-
-
     // mongoClient.connect(conxnURL)
     //     .then(function (client) {
     //         var database = client.db(dbName)
@@ -93,29 +89,87 @@ router.get('/view', function (req, res, next) {
 // req.params
 router.route("/:user_id")
     .put(function (req, res, next) {
-        console.log('requested data: ', req.body)
-        var updateData = {
-            username: req.body.username
-        }
-        mongoClient.connect(conxnURL)
-            .then(function (client) {
-                var database = client.db(dbName)
-                var collection = database.collection("user")
-                collection.updateOne({
-                    _id: new Oid(req.params.user_id)
-                }, {
-                    $set: updateData
-                })
-                    .then(function (updatedUser) {
-                        res.json(updatedUser)
+        UserModel.findOne({
+            _id: req.params.user_id
+        })
+            .then(function (user) {
+                if (!user) {
+                    return next({
+                        msg: "User Not Found",
+                        status: 404
                     })
-                    .catch(function (err) {
-                        return next(err)
-                    })
+                }
+                if (user) {
+                    if (req.body.username) {
+                        user.username = req.body.username
+                    }
+                    if (req.body.phone_number) {
+                        user.phone = req.body.phone_number
+                    }
+                    if (req.body.date_of_birth) {
+                        user.dob = req.body.date_of_birth
+                    }
+                    if (req.body.gender) {
+                        user.gender = req.body.gender
+                    }
+                    if (!user.address) {
+                        user.address = {}
+                    }
+                    if (req.body.temporary_address) {
+                        user.address.temporaryAddress = req.body.temporary_address
+                    }
+                    if (req.body.permanent_address) {
+                        user.address.permanentAddress = req.body.permanent_address
+                    }
+                    user.save()
+                        .then(function (updatedUser) {
+                            res.json({
+                                msg: "User Updated Successfully",
+                                updatedUser: updatedUser,
+                                status: 200
+                            })
+                        })
+                        .catch(function (err) {
+                            return next(err)
+                        })
+
+                }
             })
             .catch(function (err) {
                 return next(err)
             })
+
+
+
+
+
+
+
+
+
+        // console.log('requested data: ', req.body)
+        // var updateData = {
+        //     username: req.body.username
+        // }
+        // mongoClient.connect(conxnURL)
+        //     .then(function (client) {
+        //         var database = client.db(dbName)
+        //         var collection = database.collection("user")
+        //         collection.updateOne({
+        //             _id: new Oid(req.params.user_id)
+        //         }, {
+        //             $set: updateData
+        //         })
+        //             .then(function (updatedUser) {
+        //                 res.json(updatedUser)
+        //             })
+        //             .catch(function (err) {
+        //                 return next(err)
+        //             })
+        //     })
+        //     .catch(function (err) {
+        //         return next(err)
+        //     })
     })
     .delete(function (req, res, next) {
         mongoClient.connect(conxnURL)
