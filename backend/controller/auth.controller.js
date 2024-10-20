@@ -62,18 +62,37 @@ router.post("/signup", function (req, res, next) {
             if (!user[0]) {
                 const user = new UserModel()
                 // user is now mongoose object
-                user.username = req.body.username
-                user.email = req.body.email
-                user.password = req.body.password // TODO: hash password
-                user.dob = req.body.date_of_birth
-                user.gender = req.body.gender
+                if (req.body.email) {
+                    user.email = req.body.email
+                }
+                if (req.body.password) {
+                    user.password = req.body.password
+                }
 
+
+                
+                
+                if (req.body.username) {
+                    user.username = req.body.username
+                }
+                if (req.body.phone_number) {
+                    user.phone = req.body.phone_number
+                }
+                if (req.body.date_of_birth) {
+                    user.dob = req.body.date_of_birth
+                }
+                if (req.body.gender) {
+                    user.gender = req.body.gender
+                }
                 if (!user.address) {
                     user.address = {}
                 }
-
-                user.address.temporaryAddress = req.body.temporary_address.split(",")
-                user.address.permanentAddress = req.body.permanent_address
+                if (req.body.temporary_address) {
+                    user.address.temporaryAddress = req.body.temporary_address
+                }
+                if (req.body.permanent_address) {
+                    user.address.permanentAddress = req.body.permanent_address
+                }
 
                 user.save()
                     .then(function (newUser) {

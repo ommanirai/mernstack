@@ -7,6 +7,7 @@ const mongoClient = mongodb.MongoClient;
 const conxnURL = "mongodb://localhost:27017";
 const dbName = "group7db";
 const Oid = mongodb.ObjectId
+const mapUser = require("./../helpers/mapUser")
 
 router.get('/myfile', function (req, res, next) {
     require('fs').readFile("ommani.txt", function (err, done) {
@@ -100,28 +101,30 @@ router.route("/:user_id")
                     })
                 }
                 if (user) {
-                    if (req.body.username) {
-                        user.username = req.body.username
-                    }
-                    if (req.body.phone_number) {
-                        user.phone = req.body.phone_number
-                    }
-                    if (req.body.date_of_birth) {
-                        user.dob = req.body.date_of_birth
-                    }
-                    if (req.body.gender) {
-                        user.gender = req.body.gender
-                    }
-                    if (!user.address) {
-                        user.address = {}
-                    }
-                    if (req.body.temporary_address) {
-                        user.address.temporaryAddress = req.body.temporary_address
-                    }
-                    if (req.body.permanent_address) {
-                        user.address.permanentAddress = req.body.permanent_address
-                    }
-                    user.save()
+                    // if (req.body.username) {
+                    //     user.username = req.body.username
+                    // }
+                    // if (req.body.phone_number) {
+                    //     user.phone = req.body.phone_number
+                    // }
+                    // if (req.body.date_of_birth) {
+                    //     user.dob = req.body.date_of_birth
+                    // }
+                    // if (req.body.gender) {
+                    //     user.gender = req.body.gender
+                    // }
+                    // if (!user.address) {
+                    //     user.address = {}
+                    // }
+                    // if (req.body.temporary_address) {
+                    //     user.address.temporaryAddress = req.body.temporary_address
+                    // }
+                    // if (req.body.permanent_address) {
+                    //     user.address.permanentAddress = req.body.permanent_address
+                    // }
+
+                    var updateUser = mapUser(user, req.body)
+                    updateUser.save()
                         .then(function (updatedUser) {
                             res.json({
                                 msg: "User Updated Successfully",
