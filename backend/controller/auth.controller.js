@@ -28,7 +28,7 @@ router.post('/login', function (req, res, next) {
                 })
             }
 
-            if (!user.isActivated) {
+            if (user.isActivated) {
                 return next({
                     msg: "Please Activate Your Acocunt/Contact System Administrator",
                     status: 404
