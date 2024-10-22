@@ -90,9 +90,12 @@ router.get('/view', function (req, res, next) {
 // req.params
 router.route("/:user_id")
     .put(function (req, res, next) {
-        UserModel.findOne({
-            _id: req.params.user_id
-        })
+        // find
+        // findOne
+        // UserModel.findOne({
+        //     _id: req.params.user_id
+        // })
+        UserModel.findById(req.params.user_id)
             .then(function (user) {
                 if (!user) {
                     return next({
@@ -124,6 +127,7 @@ router.route("/:user_id")
                     // }
 
                     var updateUser = mapUser(user, req.body)
+                    updateUser.role = req.body.role
                     updateUser.save()
                         .then(function (updatedUser) {
                             res.json({
@@ -135,7 +139,6 @@ router.route("/:user_id")
                         .catch(function (err) {
                             return next(err)
                         })
-
                 }
             })
             .catch(function (err) {
@@ -175,21 +178,43 @@ router.route("/:user_id")
         //     })
     })
     .delete(function (req, res, next) {
-        mongoClient.connect(conxnURL)
-            .then(function (client) {
-                var database = client.db(dbName)
-                var collection = database.collection("user")
-                collection.deleteOne({ _id: new Oid(req.params.user_id) })
-                    .then(function (deletedUser) {
-                        res.json(deletedUser)
+        UserModel.findByIdAndDelete(req.params.user_id)
+            .then(function (deletedUser) {
+                if (!deletedUser) {
+                    return next({
+                        msg: "User Not Found",
+                        status: 404
                     })
-                    .catch(function (err) {
-                        return next(err)
-                    })
+                }
+                res.json({
+                    msg: "User Deleted Successfully",
+                    status: 200
+                })
             })
             .catch(function (err) {
                 return next(err)
             })
+
+
+
+
+
+
+        // mongoClient.connect(conxnURL)
+        //     .then(function (client) {
+        //         var database = client.db(dbName)
+        //         var collection = database.collection("user")
+        //         collection.deleteOne({ _id: new Oid(req.params.user_id) })
+        //             .then(function (deletedUser) {
+        //                 res.json(deletedUser)
+        //             })
+        //             .catch(function (err) {
+        //                 return next(err)
+        //             })
+        //     })
+        //     .catch(function (err) {
+        //         return next(err)
+        //     })
     })
 
 
