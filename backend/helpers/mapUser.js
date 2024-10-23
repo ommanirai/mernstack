@@ -21,5 +21,9 @@ module.exports = function(user, reqData){
         user.address.permanentAddress = reqData.permanent_address
     }
 
+    if(reqData.img){
+        user.image = reqData.img
+    }
+
     return user
 }

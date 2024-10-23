@@ -3,11 +3,29 @@ const router = express.Router()
 const mongodb = require("mongodb");
 const UserModel = require('../model/user.model');
 const mongoClient = mongodb.MongoClient;
-
 const connectionURL = 'mongodb://localhost:27017'
 const dbName = "group7db"
 const mapUser = require("./../helpers/mapUser")
 const passwordHash = require("password-hash")
+const multer = require("multer")
+const path = require("path")
+
+// const upload = multer({
+//     dest:"uploads/images/"
+// })
+
+const uploader = multer.diskStorage({
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname)
+    },
+    destination: function (req, file, cb) {
+        cb(null, path.join(process.cwd(), "uploads/images/"))
+    }
+})
+
+const upload = multer({
+    storage: uploader
+})
 
 
 
@@ -82,7 +100,10 @@ router.post('/register', function (req, res, next) {
         })
 })
 
-router.post("/signup", function (req, res, next) {
+router.post("/signup", upload.single("img"), function (req, res, next) {
+    console.log("req.body: ", req.body)
+    console.log("req.file: ", req.file)
+
     UserModel.find({
         email: req.body.email
     })
@@ -120,6 +141,11 @@ router.post("/signup", function (req, res, next) {
                 // if (req.body.permanent_address) {
                 //     user.address.permanentAddress = req.body.permanent_address
                 // }
+
+                if(req.file){
+                    req.body.img = req.file.originalname
+                }
+
                 var new_user = mapUser(user, req.body)
                 if (req.body.email) {
                     new_user.email = req.body.email
