@@ -23,8 +23,20 @@ const uploader = multer.diskStorage({
     }
 })
 
+const typeFilter = (req, file, cb) => {
+    var fileType = file.mimetype.split("/")[0]
+    if (fileType != "image") {
+        req.fileTypeError = true
+        cb(null, false)
+    }
+    else {
+        cb(null, true)
+    }
+}
+
 const upload = multer({
-    storage: uploader
+    storage: uploader,
+    fileFilter:typeFilter
 })
 
 
@@ -104,6 +116,13 @@ router.post("/signup", upload.single("img"), function (req, res, next) {
     console.log("req.body: ", req.body)
     console.log("req.file: ", req.file)
 
+    if(req.fileTypeError){
+        return next({
+            msg:"Invalid File Format",
+            status:404
+        })
+    }
+
     UserModel.find({
         email: req.body.email
     })
@@ -142,9 +161,42 @@ router.post("/signup", upload.single("img"), function (req, res, next) {
                 //     user.address.permanentAddress = req.body.permanent_address
                 // }
 
-                if(req.file){
+
+
+                
+                // if(req.file){
+                //     // console.log("req.file.mimetype: ", req.file.mimetype)
+
+                //     var fileType = req.file.mimetype.split("/")[0] // "image"
+
+                //     // console.log("fiel type is: ", fileType)
+
+                //     // if(fileType=== "image/jpeg" || fileType === "image/png")
+                //     if(fileType === "image"){
+                //         req.body.img = req.file.originalname
+                //     }
+                // }
+
+
+
+
+
+
+                if (req.file) {
+                    // var fileType = req.file.mimetype.split("/")[0]
+                    // if (fileType != "image") {
+                    //     // file remove
+                    //     // fs module
+                    //     return next({
+                    //         msg: "Invalid File Format",
+                    //         status: 404
+                    //     })
+                    // }
                     req.body.img = req.file.originalname
                 }
+
+
+
 
                 var new_user = mapUser(user, req.body)
                 if (req.body.email) {
