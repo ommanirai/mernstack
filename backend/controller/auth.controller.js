@@ -7,42 +7,24 @@ const connectionURL = 'mongodb://localhost:27017'
 const dbName = "group7db"
 const mapUser = require("./../helpers/mapUser")
 const passwordHash = require("password-hash")
-const multer = require("multer")
-const path = require("path")
-
-// const upload = multer({
-//     dest:"uploads/images/"
-// })
-
-const uploader = multer.diskStorage({
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + "-" + file.originalname)
-    },
-    destination: function (req, file, cb) {
-        cb(null, path.join(process.cwd(), "uploads/images/"))
-    }
-})
-
-const typeFilter = (req, file, cb) => {
-    var fileType = file.mimetype.split("/")[0]
-    if (fileType != "image") {
-        req.fileTypeError = true
-        cb(null, false)
-    }
-    else {
-        cb(null, true)
-    }
-}
-
-const upload = multer({
-    storage: uploader,
-    fileFilter:typeFilter
-})
-
-
+const upload = require("./../middleware/upload")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 // console.log("file directory in auth: ", __dirname)
 // console.log("root directory in auth: ", process.cwd())
+
+
+function createToken(user) {
+    let token;
+    token = jwt.sign({
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        _id: user._id
+    }, process.env.SECRET_KEY)
+    return token;
+}
 
 
 // /auth/login
@@ -74,10 +56,12 @@ router.post('/login', function (req, res, next) {
                     })
                 }
                 if (isMatched) {
+                    var token = createToken(user)
                     res.json({
-                        LoggedInUser: user,
+                        token:token,
                         msg: "Logged In Successfully",
-                        status: 200
+                        status: 200,
+                        LoggedInUser: user
                     })
                 }
             }
@@ -112,14 +96,17 @@ router.post('/register', function (req, res, next) {
         })
 })
 
-router.post("/signup", upload.single("img"), function (req, res, next) {
+// multiple file upload
+router.post("/signup", upload.array("img"), function (req, res, next) {
+    // single file upload
+    // router.post("/signup", upload.single("img"), function (req, res, next) {
     console.log("req.body: ", req.body)
-    console.log("req.file: ", req.file)
+    console.log("req.file: ", req.files)
 
-    if(req.fileTypeError){
+    if (req.fileTypeError) {
         return next({
-            msg:"Invalid File Format",
-            status:404
+            msg: "Invalid File Format",
+            status: 404
         })
     }
 
@@ -163,7 +150,7 @@ router.post("/signup", upload.single("img"), function (req, res, next) {
 
 
 
-                
+
                 // if(req.file){
                 //     // console.log("req.file.mimetype: ", req.file.mimetype)
 
@@ -181,8 +168,8 @@ router.post("/signup", upload.single("img"), function (req, res, next) {
 
 
 
-
-                if (req.file) {
+                // for single file upload
+                if (req.file && req.file != null) {
                     // var fileType = req.file.mimetype.split("/")[0]
                     // if (fileType != "image") {
                     //     // file remove
@@ -193,6 +180,13 @@ router.post("/signup", upload.single("img"), function (req, res, next) {
                     //     })
                     // }
                     req.body.img = req.file.originalname
+                }
+
+                // for multiple file upload
+                if (req.files && req.files.length > 0) {
+                    req.body.img = req.files.map(function (item, index) {
+                        return item.originalname
+                    })
                 }
 
 

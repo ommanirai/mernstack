@@ -4,6 +4,7 @@ const authRouter = require('./controller/auth.controller');
 const userRouter = require('./controller/user.controller');
 const path = require("path")
 const isAdmin = require('./middleware/isAdmin')
+const authenticate = require("./middleware/authenticate")
 
 // console.log("file directory: ", __dirname)
 // console.log("root directory: ", process.cwd())
@@ -33,7 +34,7 @@ app.use(express.static('uploads'))
 app.use('/file', express.static(path.join(process.cwd() + "/uploads")))
 
 app.use('/auth', authRouter)
-app.use('/user', userRouter)
+app.use('/user', authenticate, userRouter)
 
 
 app.get("*", function (req, res) {
@@ -60,7 +61,7 @@ app.use(function (req, res, next) {
 // error  handling middleware
 app.use(function (err, req, res, next) {
     res.json({
-        error: "From error handling middleware",
+        // error: "From error handling middleware",
         msg: err.msg || err,
         status: err.status || 400
     })
