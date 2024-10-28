@@ -44,6 +44,7 @@ router.get("/user_details/:user_id", function (req, res, next) {
 // /user/view
 // get all user
 router.get('/view', function (req, res, next) {
+    console.log("Logged In user: ", req.loggedInUser)
     UserModel
         .find()
         // .sort({

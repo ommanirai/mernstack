@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken")
+
 module.exports = function(req, res, next){
     var token;
     if(req.headers["authorization"]){
@@ -9,7 +11,19 @@ module.exports = function(req, res, next){
 
     if(token){
         // verify token
-        next()
+        jwt.verify(token,process.env.SECRET_KEY, function(err,done){
+            if(err){
+                return next({
+                    msg:"Invalid Token/Token Verification Fail",
+                    status:404
+                })
+            }
+            if(done){
+                req.loggedInUser = done.username
+                console.log("decoded user: ", done)
+                next()
+            }
+        })
     }
     else{
         return next({
