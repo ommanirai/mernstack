@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require('morgan');
 const authRouter = require('./controller/auth.controller');
 const userRouter = require('./controller/user.controller');
+const categoryRouter = require("./route/category.route")
 const path = require("path")
 const isAdmin = require('./middleware/isAdmin')
 const authenticate = require("./middleware/authenticate")
@@ -35,6 +36,7 @@ app.use('/file', express.static(path.join(process.cwd() + "/uploads")))
 
 app.use('/auth', authRouter)
 app.use('/user', authenticate, userRouter)
+app.use("/category", categoryRouter)
 
 
 app.get("*", function (req, res) {
