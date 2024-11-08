@@ -1,7 +1,6 @@
 const ProductModel = require("./../model/product.model")
 const mapProduct = require("./../helpers/mapProduct")
 
-
 exports.addProduct = (req, res, next) => {
 
     if (req.fileTypeError) {
@@ -10,7 +9,6 @@ exports.addProduct = (req, res, next) => {
             status: 404
         })
     }
-
 
     var product = new ProductModel()
 
@@ -34,9 +32,4 @@ exports.addProduct = (req, res, next) => {
         .catch(function (err) {
             return next(err)
         })
-
-
-
-
-
 }
