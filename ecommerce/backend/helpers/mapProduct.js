@@ -24,7 +24,7 @@ module.exports = function (product, reqData) {
     }
 
     if (reqData.product_tag) {
-        product.product_tag = reqData.product_tag
+        product.product_tag = reqData.product_tag.split(",")
     }
 
     if (reqData.product_stock) {
