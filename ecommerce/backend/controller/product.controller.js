@@ -112,8 +112,7 @@ exports.updateProduct = (req, res, next) => {
                         status: 404
                     })
                 }
-
-                if (req.files && req.files.length > 0) {
+                if (req.files) {
                     req.body.product_image = req.files.map(function (item, index) {
                         return item.originalname
                     })
