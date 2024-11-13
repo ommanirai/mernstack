@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+}
+
+li {
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    background-color: cornflowerblue;
+}
+
+li:hover {
+    cursor: pointer;
+    color: red;
+}
