@@ -30,6 +30,13 @@ export class Register extends Component {
 
     handleChange = event => {
         const { name, value } = event.target;
+        // this.setState({
+        //     data: {
+        //         [name]: value
+        //     }
+        // }, ()=>{
+        //     console.log("this.state.data is: ", this.state.data)
+        // })
         this.setState(previousState => ({
             data: {
                 ...previousState.data,
@@ -39,6 +46,14 @@ export class Register extends Component {
             console.log("state data is: ", this.state.data)
         })
     }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        this.setState({
+            isSubmitting: true
+        })
+    }
+
 
     render() {
         return (
