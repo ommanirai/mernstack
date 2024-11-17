@@ -43,15 +43,38 @@ export class Register extends Component {
                 [name]: value
             }
         }), () => {
-            console.log("state data is: ", this.state.data)
+            // console.log("state data is: ", this.state.data)
+            validateForm(name)
         })
     }
+
+
+    validateForm = fieldName =>{
+        var errMsg = ""
+        
+    }
+
+
+
+
+
+
 
     handleSubmit = event => {
         event.preventDefault()
         this.setState({
             isSubmitting: true
         })
+
+        // data preparation
+        // api call
+        // send data to server
+
+        setTimeout(() => {
+            this.setState({
+                isSubmitting: false
+            })
+        }, 3000);
     }
 
 
@@ -91,7 +114,7 @@ export class Register extends Component {
                         <option value={"female"}>Female</option>
                         <option value={"others"}>Others</option>
                     </select>
-                    <button type="submit" value={"Register"} className="btn btn-primary mt-3" >Register</button>
+                    <button disabled={this.state.isSubmitting} type="submit" value={"Register"} className="btn btn-primary mt-3" >Register</button>
                 </form>
             </>
         )
