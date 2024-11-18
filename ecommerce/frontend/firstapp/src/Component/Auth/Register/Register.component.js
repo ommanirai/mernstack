@@ -44,20 +44,30 @@ export class Register extends Component {
             }
         }), () => {
             // console.log("state data is: ", this.state.data)
-            validateForm(name)
+            this.validateForm(name)
         })
     }
 
 
-    validateForm = fieldName =>{
+    validateForm = fieldName => {
         var errMsg = ""
-        
+        switch (fieldName) {
+            case "username":
+                errMsg = this.state.data[fieldName]
+                    ? ""
+                    : "Required field"
+        }
+
+        this.setState(previousErr => ({
+            error: {
+                ...previousErr.error,
+                [fieldName]: errMsg
+            }
+        }), () => {
+            console.log("error is: ", this.state.error)
+        })
+
     }
-
-
-
-
-
 
 
     handleSubmit = event => {
@@ -85,6 +95,7 @@ export class Register extends Component {
                     <h1>Register</h1>
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" name="username" onChange={this.handleChange} className="form-control form-control-lg" />
+                    <p className="text-danger">{this.state.error.username}</p>
 
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" onChange={this.handleChange} className="form-control form-control-lg" />
