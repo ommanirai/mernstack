@@ -54,8 +54,41 @@ export class Register extends Component {
         switch (fieldName) {
             case "username":
                 errMsg = this.state.data[fieldName]
-                    ? ""
+                    ? this.state.data[fieldName].match(/^[a-zA-Z]/)
+                        ? this.state.data[fieldName].match(/[0-9]/)
+                            ? "username must not contain number"
+                            : this.state.data[fieldName].match(/[!@#$%^#&*]/)
+                                ? "username must not contain special character"
+                                : this.state.data[fieldName].length < 3
+                                    ? "username must contain atleast 3 character"
+                                    : ""
+                        : "username must start with alphabet"
                     : "Required field"
+                break;
+            case "password":
+                errMsg = this.state.data["password"]
+                    ? this.state.data[fieldName].match(/[a-z]/)
+                        ? this.state.data[fieldName].match(/[A-Z]/)
+                            ? this.state.data[fieldName].match(/[0-9]/)
+                                ? this.state.data[fieldName].match(/[!@#$%^&*]/)
+                                    ? this.state.data[fieldName].length < 8
+                                        ? "weak password/password must contain atleast 8 character"
+                                        : this.state.data[fieldName].length > 20
+                                            ? "password do not exceded 15 character"
+                                            : ""
+                                    : "password must contain atleast one special character"
+                                : "password must contain atleast one number"
+                            : "password must contain atleast one uppercase alphabet"
+                        : "password must contain atleast one lowercase alphabet"
+                    : "required field"
+                break;
+            case "confirmPassword":
+                errMsg = this.state.data[fieldName]
+                    ? this.state.data[fieldName] === this.state.data["password"]
+                        ? ""
+                        : "confirm password did not match with password"
+                    : "required field"
+
         }
 
         this.setState(previousErr => ({
@@ -101,10 +134,12 @@ export class Register extends Component {
                     <input type="email" id="email" name="email" onChange={this.handleChange} className="form-control form-control-lg" />
 
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" onChange={this.handleChange} className="form-control form-control-lg" />
+                    <input type="text" id="password" name="password" onChange={this.handleChange} className="form-control form-control-lg" />
+                    <p className="text-danger">{this.state.error.password}</p>
 
                     <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" onChange={this.handleChange} className="form-control form-control-lg" />
+                    <input type="text" id="confirmPassword" name="confirmPassword" onChange={this.handleChange} className="form-control form-control-lg" />
+                    <p className="text-danger">{this.state.error.confirmPassword}</p>
 
                     <label htmlFor="phone">Phone</label>
                     <input type="number" id="phone" name="phone" onChange={this.handleChange} className="form-control form-control-lg" />
