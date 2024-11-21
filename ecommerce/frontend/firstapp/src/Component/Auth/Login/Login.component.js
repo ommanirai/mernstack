@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Button } from "../../Common/Button/Button.component";
 
 export class Login extends Component {
     constructor() {
@@ -73,7 +74,13 @@ export class Login extends Component {
                     <input type="password" onChange={this.handleChange} className="form-control form-control-lg mb-2" name="password" id="password" />
                     <p className="text-danger">{this.state.passwordError}</p>
 
-                    <button disabled={this.state.isSubmitting} className="btn btn-primary" type="submit" value="Login">Login</button>
+                    {/* <button disabled={this.state.isSubmitting} className="btn btn-primary" type="submit" value="Login">Login</button> */}
+                    <Button
+                        isSubmitting={this.state.isSubmitting}
+                        enabledLabel="Login"
+                        disabledLabel = "LoginingIn..."
+                    ></Button>
+
                     <p>Don't Have an Account? <a href="#">Register</a></p>
                 </form>
             </>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "../../Common/Button/Button.component";
 
 const formData = {
     username: "",
@@ -24,7 +25,7 @@ export class Register extends Component {
                 ...formData
             },
             isSubmitting: false,
-            isValidForm: false
+            isValidForm: true
         }
     }
 
@@ -84,9 +85,23 @@ export class Register extends Component {
                 break;
             case "confirmPassword":
                 errMsg = this.state.data[fieldName]
-                    ? this.state.data[fieldName] === this.state.data["password"]
-                        ? ""
-                        : "confirm password did not match with password"
+                    ? this.state.data["password"]
+                        ? this.state.data[fieldName] === this.state.data["password"]
+                            ? ""
+                            : "confirm password did not match with password"
+                        : this.state.data[fieldName].match(/[a-z]/)
+                            ? this.state.data[fieldName].match(/[A-Z]/)
+                                ? this.state.data[fieldName].match(/[0-9]/)
+                                    ? this.state.data[fieldName].match(/[!@#$%^&*]/)
+                                        ? this.state.data[fieldName].length < 8
+                                            ? "weak confirm password/confirm password must contain atleast 8 character"
+                                            : this.state.data[fieldName].length > 20
+                                                ? "confirm password do not exceded 15 character"
+                                                : ""
+                                        : "confirm password must contain atleast one special character"
+                                    : "confirm password must contain atleast one number"
+                                : "confirm password must contain atleast one uppercase alphabet"
+                            : "confirm password must contain atleast one lowercase alphabet"
                     : "required field"
 
         }
@@ -98,6 +113,19 @@ export class Register extends Component {
             }
         }), () => {
             console.log("error is: ", this.state.error)
+            var errors = Object
+                .values(this.state.error)
+                // .filter(function(err){
+                //     if(err){
+                //         return err
+                //     }
+                // })
+                .filter(err => err)
+
+            console.log("error values is: ", errors)
+            this.setState({
+                isValidForm: errors.length === 0 ? true : false
+            })
         })
 
     }
@@ -160,7 +188,14 @@ export class Register extends Component {
                         <option value={"female"}>Female</option>
                         <option value={"others"}>Others</option>
                     </select>
-                    <button disabled={this.state.isSubmitting} type="submit" value={"Register"} className="btn btn-primary mt-3" >Register</button>
+                    {/* <button disabled={this.state.isSubmitting} type="submit" value={"Register"} className="btn btn-primary mt-3" >Register</button> */}
+                    <Button
+                        isSubmitting={this.state.isSubmitting}
+                        enabledLabel="Register"
+                        disabledLabel="Registering..."
+                        isValidForm={this.state.isValidForm}
+                    ></Button>
+                    <p>Already Have an Account? <a href="#">Login</a> </p>
                 </form>
             </>
         )
