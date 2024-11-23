@@ -127,7 +127,6 @@ export class Register extends Component {
                 isValidForm: errors.length === 0 ? true : false
             })
         })
-
     }
 
 
