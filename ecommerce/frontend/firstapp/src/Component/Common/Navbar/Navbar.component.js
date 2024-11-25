@@ -1,4 +1,5 @@
 import "./Navbar.component.css"
+import { Link } from "react-router-dom"
 
 // functional component
 // named export
@@ -8,18 +9,16 @@ export function Navbar(props) {
         // jsx
         <div>
             <ul>
-                <li>Home</li>
-                <li>Product</li>
-                <li>Gallery</li>
-                <li>Blog</li>
-                <li>Contact</li>
+                <li><Link to={"/"}>Home</Link></li>
+                <li><Link to={"/product"}>Product</Link></li>
+                <li><Link to={"/contact"}>Contact</Link></li>
                 {
                     props.isLoggedIn
                         ? <li>Logout</li>
                         : <>
                             {/* empty fragment */}
-                            <li>Login</li>
-                            <li>Register</li>
+                            <li> <Link to={"/signin"}>Login</Link> </li>
+                            <li> <Link to={"/signup"}>Register</Link> </li>
                         </>
                 }
 

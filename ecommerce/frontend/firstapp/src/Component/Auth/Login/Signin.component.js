@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Button } from "../../Common/Button/Button.component"
+import { Link } from "react-router-dom"
 
 export const Signin = props => {
     const formData = {
@@ -58,7 +59,7 @@ export const Signin = props => {
                     disabledLabel="Signin Running..."
                     isValidForm={isValidForm}
                 ></Button>
-                <p>Don't Have an Account? <a href="#">Sign up</a> </p>
+                <p>Don't Have an Account? <Link to={"/signup"} className="text-primary">Sign up</Link> </p>
             </form>
         </>
     )
