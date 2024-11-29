@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import { Button } from "../../Common/Button/Button.component"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+import toast from 'react-hot-toast'
 
 export const Signup = props => {
+    const BaseURL = "http://localhost:8000"
     const formData = {
         username: "",
         email: "",
@@ -21,11 +24,12 @@ export const Signup = props => {
     const [error, setError] = useState(formData)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isValidForm, setIsValidForm] = useState(true)
+    const navigate = useNavigate()
 
     // re-render
-    useEffect(() => {
-        console.log("data is: ", data)
-    })
+    // useEffect(() => {
+    //     console.log("data is: ", data)
+    // })
     // dependency list
 
     const handleChange = event => {
@@ -42,9 +46,24 @@ export const Signup = props => {
     const handleSubmit = event => {
         event.preventDefault()
         setIsSubmitting(true)
-        setTimeout(() => {
-            setIsSubmitting(false)
-        }, 3000);
+
+        axios.post(`${BaseURL}/auth/signup`, data, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                console.log("response is: ", response)
+                navigate("/signin")
+                toast.success(response.data.msg)
+            })
+            .catch(err => {
+                setTimeout(() => {
+                    setIsSubmitting(false)
+                }, 3000);
+                console.log("error is: ", err.response)
+                toast.error(err.response.data.msg)
+            })
     }
 
 

@@ -30,8 +30,6 @@ view
 controller
 
 
-
-
 database
 container
 harddrive partision

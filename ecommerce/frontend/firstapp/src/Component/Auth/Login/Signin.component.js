@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { Button } from "../../Common/Button/Button.component"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export const Signin = props => {
     const formData = {
         email: "",
         password: "",
     }
+
+    const BaseURL = "http://localhost:8000"
     // hooks
     // useState
     // useEffect
@@ -14,13 +17,13 @@ export const Signin = props => {
     const [error, setError] = useState(formData)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isValidForm, setIsValidForm] = useState(true)
+    const navigate = useNavigate()
 
     // re-render
     useEffect(() => {
         console.log("data is: ", data)
     })
     // dependency list
-
     const handleChange = event => {
         const { name, value } = event.target;
         // console.log("name is: ", name)
@@ -35,9 +38,21 @@ export const Signin = props => {
     const handleSubmit = event => {
         event.preventDefault()
         setIsSubmitting(true)
-        setTimeout(() => {
-            setIsSubmitting(false)
-        }, 3000);
+        axios.post(`${BaseURL}/auth/login`, data, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                console.log("response is: ", response.data)
+                navigate("/")
+            })
+            .catch(err => {
+                setTimeout(() => {
+                    setIsSubmitting(false)
+                }, 3000);
+                console.log("error is: ", err)
+            })
     }
 
 

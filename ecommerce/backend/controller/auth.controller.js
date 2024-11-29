@@ -201,7 +201,11 @@ router.post("/signup", upload.array("img"), function (req, res, next) {
                 }
                 new_user.save()
                     .then(function (newUser) {
-                        res.json(newUser)
+                        res.json({
+                            msg:"Registration Successfull",
+                            user:newUser,
+                            status:200
+                        })
                     })
                     .catch(function (err) {
                         return next(err)

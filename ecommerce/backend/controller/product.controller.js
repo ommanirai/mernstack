@@ -120,7 +120,6 @@ exports.updateProduct = (req, res, next) => {
 
                 var new_product = mapProduct(product, req.body)
 
-
                 new_product.save()
                     .then(function (newProduct) {
                         res.json({

@@ -7,12 +7,13 @@ import { Register } from './Component/Auth/Register/Register.component';
 import { Signup } from './Component/Auth/Register/Signup.component';
 import { Signin } from './Component/Auth/Login/Signin.component';
 import { MyRoute } from './MyRoute';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <React.Fragment>
       {/* interpolation */}
-      
+
       {/* <Navbar /> */}
 
       {/* <Login /> */}
@@ -20,7 +21,7 @@ function App() {
       {/* <Signin/>
       <Signup /> */}
       <MyRoute />
-      
+      <Toaster />
     </React.Fragment>
   );
 }

@@ -7,6 +7,7 @@ const productRouter = require("./route/product.route")
 const path = require("path")
 const isAdmin = require('./middleware/isAdmin')
 const authenticate = require("./middleware/authenticate")
+const cors = require("cors")
 
 // console.log("file directory: ", __dirname)
 // console.log("root directory: ", process.cwd())
@@ -16,6 +17,8 @@ const app = express()
 const port = 8000;
 
 require("./config/db")
+
+app.use(cors())
 
 // third party middleware
 app.use(morgan('dev'))
@@ -37,8 +40,8 @@ app.use('/file', express.static(path.join(process.cwd() + "/uploads")))
 
 app.use('/auth', authRouter)
 app.use('/user', authenticate, userRouter)
-app.use("/category",authenticate, categoryRouter)
-app.use("/product",authenticate, productRouter)
+app.use("/category", authenticate, categoryRouter)
+app.use("/product", authenticate, productRouter)
 
 
 app.get("*", function (req, res) {
@@ -64,6 +67,7 @@ app.use(function (req, res, next) {
 
 // error  handling middleware
 app.use(function (err, req, res, next) {
+    res.status(400)
     res.json({
         // error: "From error handling middleware",
         msg: err.msg || err,

@@ -21,8 +21,6 @@ export function Navbar(props) {
                             <li> <Link to={"/signup"}>Register</Link> </li>
                         </>
                 }
-
-
             </ul>
         </div>
     )
