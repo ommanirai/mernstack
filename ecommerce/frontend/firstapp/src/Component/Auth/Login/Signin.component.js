@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Button } from "../../Common/Button/Button.component"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { Notification } from "../../Utility/toaster"
+import { HandleError } from "../../Utility/ErrorHandler"
 
 export const Signin = props => {
     const formData = {
@@ -46,12 +48,15 @@ export const Signin = props => {
             .then(response => {
                 console.log("response is: ", response.data)
                 navigate("/")
+                Notification.ShowSuccess(response.data.msg)
             })
             .catch(err => {
                 setTimeout(() => {
                     setIsSubmitting(false)
                 }, 3000);
                 console.log("error is: ", err)
+                // Notification.ShowError(err.response.data.msg)
+                HandleError(err)
             })
     }
 

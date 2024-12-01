@@ -8,6 +8,7 @@ import { Signup } from './Component/Auth/Register/Signup.component';
 import { Signin } from './Component/Auth/Login/Signin.component';
 import { MyRoute } from './MyRoute';
 import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       {/* <Signin/>
       <Signup /> */}
       <MyRoute />
-      <Toaster />
+      <ToastContainer />
     </React.Fragment>
   );
 }
