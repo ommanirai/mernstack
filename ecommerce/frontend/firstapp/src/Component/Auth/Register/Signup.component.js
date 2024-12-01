@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Notification } from "../../Utility/toaster"
 import { HandleError } from "../../Utility/ErrorHandler"
+import { httpClient } from "../../Utility/httpClient"
 // import toast from 'react-hot-toast'
 
 export const Signup = props => {
@@ -49,26 +50,36 @@ export const Signup = props => {
         event.preventDefault()
         setIsSubmitting(true)
 
-        axios.post(`${BaseURL}/auth/signup`, data, {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+        httpClient.POST("/auth/signup", data)
             .then(response => {
-                console.log("response is: ", response)
-                navigate("/signin")
-                // toast.success(response.data.msg)
+                navigate("/login")
                 Notification.ShowSuccess(response.data.msg)
             })
             .catch(err => {
-                setTimeout(() => {
-                    setIsSubmitting(false)
-                }, 3000);
-                console.log("error is: ", err.response)
-                // toast.error(err.response.data.msg)
-                // Notification.ShowError(err.response.data.msg)
+                setIsSubmitting(false)
                 HandleError(err)
             })
+
+        // axios.post(`${BaseURL}/auth/signup`, data, {
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // })
+        //     .then(response => {
+        //         console.log("response is: ", response)
+        //         navigate("/signin")
+        //         // toast.success(response.data.msg)
+        //         Notification.ShowSuccess(response.data.msg)
+        //     })
+        //     .catch(err => {
+        //         setTimeout(() => {
+        //             setIsSubmitting(false)
+        //         }, 3000);
+        //         console.log("error is: ", err.response)
+        //         // toast.error(err.response.data.msg)
+        //         // Notification.ShowError(err.response.data.msg)
+        //         HandleError(err)
+        //     })
     }
 
     return (

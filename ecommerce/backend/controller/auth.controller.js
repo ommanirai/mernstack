@@ -61,7 +61,13 @@ router.post('/login', function (req, res, next) {
                         token:token,
                         msg: "Logged In Successfully",
                         status: 200,
-                        LoggedInUser: user
+                        // LoggedInUser: user,
+                        user_details:{
+                            username:user.username,
+                            email:user.email,
+                            role:user.role,
+                            tokens:token
+                        }
                     })
                 }
             }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 // functional component
 // named export
 export function Navbar(props) {
-    console.log("props in navbar is: ", props)
+    // console.log("props in navbar is: ", props)
     return (
         // jsx
         <div>

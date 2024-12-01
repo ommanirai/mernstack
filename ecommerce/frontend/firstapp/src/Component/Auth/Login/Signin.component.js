@@ -5,12 +5,16 @@ import { Link, useNavigate } from "react-router-dom"
 import { Notification } from "../../Utility/toaster"
 import { HandleError } from "../../Utility/ErrorHandler"
 import { httpClient } from "../../Utility/httpClient"
+import { isAuthenticated } from "../../Utility/isAuthenticate"
 
 export const Signin = props => {
     const formData = {
         email: "",
         password: "",
     }
+
+    var user = isAuthenticated()
+    console.log("logged in user is: ", user)
 
     const BaseURL = "http://localhost:8000"
     // hooks
@@ -23,9 +27,9 @@ export const Signin = props => {
     const navigate = useNavigate()
 
     // re-render
-    useEffect(() => {
-        console.log("data is: ", data)
-    })
+    // useEffect(() => {
+    //     console.log("data is: ", data)
+    // })
     // dependency list
     const handleChange = event => {
         const { name, value } = event.target;
@@ -44,13 +48,19 @@ export const Signin = props => {
 
         httpClient.POST("/auth/login", data)
             .then(response => {
-                navigate("/")
+                // console.log(response.data)
+                localStorage.setItem("user_details", JSON.stringify(response.data.user_details))
                 Notification.ShowSuccess(response.data.msg)
+                // navigate("/")
+                // user && user.role === "admin"
+                //     ? navigate("/admin/dashbaord")
+                //     : navigate("/user/profile")
+                isAuthenticated() && isAuthenticated().role === "admin"
+                    ? navigate("/admin/dashbaord")
+                    : navigate("/user/profile")
             })
             .catch(err => {
-                setTimeout(() => {
-                    setIsSubmitting(false)
-                }, 3000);
+                setIsSubmitting(false)
                 HandleError(err)
             })
 
