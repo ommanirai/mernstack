@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isAuthenticated } from "./isAuthenticate";
 // import { HandleError } from "./ErrorHandler";
 
 const baseUrl = "http://localhost:8000"
@@ -7,34 +8,37 @@ const myAxios = axios.create({
     baseURL: baseUrl
 })
 
-const getHeader = () => {
+const getHeader = (isSecured) => {
     let options = {
         "Content-Type": "application/json"
+    }
+    if (isSecured) {
+        options["Authorization"] = isAuthenticated() && isAuthenticated().tokens
     }
     return options
 }
 
-const PUT = (url, data) => {
+const PUT = (url, data, isSecured = false) => {
     return myAxios.put(url, data, {
-        headers: getHeader()
+        headers: getHeader(isSecured)
     })
 }
 
-const DELETE = (url, params) => {
+const DELETE = (url, isSecured = false) => {
     return myAxios.delete(url, {
-        headers: getHeader()
+        headers: getHeader(isSecured)
     })
 }
 
-const GET = (url, params) => {
+const GET = (url, isSecured = false) => {
     return myAxios.get(url, {
-        headers: getHeader()
+        headers: getHeader(isSecured)
     })
 }
 
-const POST = (url, data) => {
+const POST = (url, data, isSecured = false) => {
     return myAxios.post(url, data, {
-        headers: getHeader()
+        headers: getHeader(isSecured)
     })
 }
 

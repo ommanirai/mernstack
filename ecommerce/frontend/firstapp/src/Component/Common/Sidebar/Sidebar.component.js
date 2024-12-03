@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const Sidebar = props => {
     return (
         <>
-             <div className="d-flex flex-column flex-shrink-0 p-3 bg-dark"  style={{height:"700px"}}>
+            <div className="d-flex flex-column flex-shrink-0 p-3 bg-dark" style={{ height: "700px" }}>
                 <Link to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     {/* <svg className="bi pe-none me-2" width="40" height="32"><use xlink:to="#bootstrap" /></svg> */}
                     <span className="fs-4">Admin Dashboard</span>
@@ -11,13 +11,13 @@ export const Sidebar = props => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto bg-dark">
                     <li>
-                        <Link to="/admin/dashboard/category/add" className="nav-link text-white">
+                        <Link to="/cateogory/add" className="nav-link text-white">
                             {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlink:to="#table" /></svg> */}
                             Category Add
                         </Link>
                     </li>
                     <li>
-                        <Link to="/admin/dashboard/category/view_category" className="nav-link text-white">
+                        <Link to="/category/view" className="nav-link text-white">
                             {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlink:to="#grid" /></svg> */}
                             Category View
                         </Link>

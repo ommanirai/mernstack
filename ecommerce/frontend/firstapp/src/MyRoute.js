@@ -3,6 +3,8 @@ import { Signin } from "./Component/Auth/Login/Signin.component"
 import { Signup } from "./Component/Auth/Register/Signup.component"
 import { Navbar } from "./Component/Common/Navbar/Navbar.component"
 import { Dashboard } from "./Component/Pages/Admin/Dashboard/Dashboard"
+import { AddCategory } from "./Component/Pages/Admin/Category/Add/Addcategory.component"
+import { ViewCategory } from "./Component/Pages/Admin/Category/View/ViewCategory.component"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -37,6 +39,8 @@ export const MyRoute = props => {
                     <Route path="/signin" element={<Signin />}></Route>
                     <Route path="/signup" element={<Signup />} ></Route>
                     <Route path="/admin/dashbaord" element={<Dashboard/>}/>
+                    <Route path="/cateogory/add" element={<AddCategory/>}/>
+                    <Route path="/category/view" element={<ViewCategory/>}/>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>
             </BrowserRouter>
