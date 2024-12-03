@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Signin } from "./Component/Auth/Login/Signin.component"
 import { Signup } from "./Component/Auth/Register/Signup.component"
 import { Navbar } from "./Component/Common/Navbar/Navbar.component"
+import { Dashboard } from "./Component/Pages/Admin/Dashboard/Dashboard"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -35,6 +36,7 @@ export const MyRoute = props => {
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/signin" element={<Signin />}></Route>
                     <Route path="/signup" element={<Signup />} ></Route>
+                    <Route path="/admin/dashbaord" element={<Dashboard/>}/>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>
             </BrowserRouter>
