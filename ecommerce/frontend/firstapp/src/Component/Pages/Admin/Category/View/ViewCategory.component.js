@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { httpClient } from "../../../../Utility/httpClient"
 import { HandleError } from "../../../../Utility/ErrorHandler"
 import { Sidebar } from "../../../../Common/Sidebar/Sidebar.component"
+import { Link } from "react-router-dom"
 
 export const ViewCategory = props => {
     const [categories, setCategory] = useState([])
@@ -41,8 +42,8 @@ export const ViewCategory = props => {
                                         <td>{index + 1}</td>
                                         <td>{item.category_name}</td>
                                         <td>
-                                            <i class="bi bi-pencil-square text-info"></i>
-                                            <i class="bi bi-trash text-danger"></i>
+                                            <Link to={`/category/update/${item._id}`}><i className="bi bi-pencil-square text-info"></i></Link>
+                                            <Link to={`/category/delete/${item._id}`} ><i className="bi bi-trash text-danger"></i></Link>
                                         </td>
                                     </tr>
                                 })

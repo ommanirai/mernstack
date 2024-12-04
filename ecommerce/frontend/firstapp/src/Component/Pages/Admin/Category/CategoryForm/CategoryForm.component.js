@@ -12,8 +12,13 @@ export const CategoryForm = props => {
     const [isValidForm, setIsValidForm] = useState(true)
 
     useEffect(function () {
-        console.log("data is: ", formData)
-    }, [formData])
+        // console.log("data is: ", formData)
+        if(props.data){
+            setFormData({
+                category_name: props.data.category_name
+            })
+        }
+    }, [props.data])
 
 
     const handleSubmit = event => {
@@ -35,10 +40,10 @@ export const CategoryForm = props => {
         <>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="categoryname">Category Name</label>
-                <input type="text" className="form-control" name="category_name" onChange={handleChange} id="categoryname" />
+                <input type="text" className="form-control" name="category_name" onChange={handleChange} id="categoryname" value={formData.category_name} />
                 <Button
-                    enabledLabel="Add Category"
-                    disabledLabel="Adding Category"
+                    enabledLabel={props.enabledLabel || "Submit"}
+                    disabledLabel={props.disabledLabel || "Submitting"}
                     isSubmitting={isSubmitting}
                     isValidForm={isValidForm}
                 ></Button>

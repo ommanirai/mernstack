@@ -5,6 +5,7 @@ import { Navbar } from "./Component/Common/Navbar/Navbar.component"
 import { Dashboard } from "./Component/Pages/Admin/Dashboard/Dashboard"
 import { AddCategory } from "./Component/Pages/Admin/Category/Add/Addcategory.component"
 import { ViewCategory } from "./Component/Pages/Admin/Category/View/ViewCategory.component"
+import { UpdateCategory } from "./Component/Pages/Admin/Category/Update/UpdateCategory.component"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -41,6 +42,7 @@ export const MyRoute = props => {
                     <Route path="/admin/dashbaord" element={<Dashboard/>}/>
                     <Route path="/cateogory/add" element={<AddCategory/>}/>
                     <Route path="/category/view" element={<ViewCategory/>}/>
+                    <Route path="/category/update/:category_id" element={<UpdateCategory/>}/>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>
             </BrowserRouter>
