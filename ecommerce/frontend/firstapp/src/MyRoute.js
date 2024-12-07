@@ -7,6 +7,8 @@ import { AddCategory } from "./Component/Pages/Admin/Category/Add/Addcategory.co
 import { ViewCategory } from "./Component/Pages/Admin/Category/View/ViewCategory.component"
 import { UpdateCategory } from "./Component/Pages/Admin/Category/Update/UpdateCategory.component"
 import { DeleteCategory } from "./Component/Pages/Admin/Category/Delete/DeleteCategory.component"
+import { AddProduct } from "./Component/Pages/Admin/Product/Add/AddProduct.component"
+import { ViewProduct } from "./Component/Pages/Admin/Product/View/ViewProduct.component"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -45,6 +47,9 @@ export const MyRoute = props => {
                     <Route path="/category/view" element={<ViewCategory/>}/>
                     <Route path="/category/update/:category_id" element={<UpdateCategory/>}/>
                     <Route path="/category/delete/:category_id" element={<DeleteCategory/>}/>
+
+                    <Route path="/product/add" element={<AddProduct/>}/>
+                    <Route path="/product/view" element={<ViewProduct/>}/>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>
             </BrowserRouter>
