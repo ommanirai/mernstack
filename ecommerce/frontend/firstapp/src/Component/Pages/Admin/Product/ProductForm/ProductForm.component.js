@@ -21,7 +21,8 @@ export const ProductForm = props => {
         expiry_date: "",
         discounted_item: false,
         discounted_type: "",
-        discounted_value: ""
+        discounted_value: "",
+        filesToUpload: []
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isValidForm, setIsValidForm] = useState(true)
@@ -58,15 +59,22 @@ export const ProductForm = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        props.submitForm(formData)
+        props.submitForm(formData, formData.filesToUpload)
     }
 
     const handleChange = event => {
-        const { name, value, checked, type } = event.target;
+        const { name, value, checked, type, files } = event.target;
         console.log("type is: ", type)
         console.log("checked is: ", checked)
 
-        if (type === "checkbox") {
+        if (files) {
+            setFormData(prevState => ({
+                ...prevState,
+                filesToUpload: [...prevState.filesToUpload, ...files]
+            }))
+        }
+
+        else if (type === "checkbox") {
             setFormData(prevState => ({
                 ...prevState,
                 [name]: checked
@@ -139,13 +147,13 @@ export const ProductForm = props => {
                 }
 
                 <input type="checkbox" className="me-2" name="discounted_item" onChange={handleChange} id="discounted_item" />
-                <label htmlFor="discounted_item">discounted_item</label>
+                <label htmlFor="discounted_item">Discounted Item</label>
                 <br />
 
                 {
                     formData.discounted_item &&
                     <>
-                        <label htmlFor="discounted_type">discounted_type</label>
+                        <label htmlFor="discounted_type">Discounted Type</label>
                         <select type="text" className="form-control mb-3" name="discounted_type" onChange={handleChange} id="discounted_type" value={formData.discounted_type} >
                             <option value={""}>Choose Discounted Type</option>
                             <option value={"percentage"}>percentage</option>
@@ -153,10 +161,13 @@ export const ProductForm = props => {
                             <option value={"value"}>value</option>
                         </select>
 
-                        <label htmlFor="discounted_value">discounted_value</label>
+                        <label htmlFor="discounted_value">Discounted Value</label>
                         <input type="text" className="form-control mb-3" name="discounted_value" onChange={handleChange} id="discounted_value" value={formData.discounted_value} />
                     </>
                 }
+
+                <label htmlFor="discounted_value">Product Image</label>
+                <input type="file" className="form-control mb-3" onChange={handleChange} id="discounted_value" />
 
 
                 <Button

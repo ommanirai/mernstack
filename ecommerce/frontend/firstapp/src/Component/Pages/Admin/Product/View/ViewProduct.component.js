@@ -9,6 +9,8 @@ export const ViewProduct = props => {
     const [products, setProduct] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
+    const ImageUrl = "http://localhost:8000/file/images/"
+
     useEffect(function () {
         setIsLoading(true)
         httpClient.GET("/product/view", true)
@@ -49,6 +51,7 @@ export const ViewProduct = props => {
                                             <th>Product color</th>
                                             <th>Product Description</th>
                                             <th>Discounted Item</th>
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -63,6 +66,13 @@ export const ViewProduct = props => {
                                                     <td>{item.product_color}</td>
                                                     <td>{item.product_description}</td>
                                                     <td>{item.product_discount && item.product_discount.discounted_item && "true"}</td>
+                                                    <td>
+                                                        {
+                                                            // console.log("product image is: ",ImageUrl+ item.product_image[0])
+                                                            item.product_image && item.product_image.length > 0 &&
+                                                        <img src={`${ImageUrl}${item.product_image[0]}`} />
+                                                        }
+                                                    </td>
                                                     <td>
                                                         <Link to={`/category/update/${item._id}`}><i className="bi bi-pencil-square text-info"></i></Link>
                                                         <Link to={`/category/delete/${item._id}`} ><i className="bi bi-trash text-danger"></i></Link>

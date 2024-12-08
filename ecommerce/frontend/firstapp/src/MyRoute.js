@@ -9,6 +9,7 @@ import { UpdateCategory } from "./Component/Pages/Admin/Category/Update/UpdateCa
 import { DeleteCategory } from "./Component/Pages/Admin/Category/Delete/DeleteCategory.component"
 import { AddProduct } from "./Component/Pages/Admin/Product/Add/AddProduct.component"
 import { ViewProduct } from "./Component/Pages/Admin/Product/View/ViewProduct.component"
+import { AdminRoute } from "./Component/Utility/AdminRoute"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -42,14 +43,15 @@ export const MyRoute = props => {
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/signin" element={<Signin />}></Route>
                     <Route path="/signup" element={<Signup />} ></Route>
-                    <Route path="/admin/dashbaord" element={<Dashboard/>}/>
-                    <Route path="/cateogory/add" element={<AddCategory/>}/>
-                    <Route path="/category/view" element={<ViewCategory/>}/>
-                    <Route path="/category/update/:category_id" element={<UpdateCategory/>}/>
-                    <Route path="/category/delete/:category_id" element={<DeleteCategory/>}/>
-
-                    <Route path="/product/add" element={<AddProduct/>}/>
-                    <Route path="/product/view" element={<ViewProduct/>}/>
+                    <Route path="/" element={<AdminRoute />}>
+                        <Route path="/admin/dashbaord" element={<Dashboard />} />
+                        <Route path="/cateogory/add" element={<AddCategory />} />
+                        <Route path="/category/view" element={<ViewCategory />} />
+                        <Route path="/category/update/:category_id" element={<UpdateCategory />} />
+                        <Route path="/category/delete/:category_id" element={<DeleteCategory />} />
+                        <Route path="/product/add" element={<AddProduct />} />
+                        <Route path="/product/view" element={<ViewProduct />} />
+                    </Route>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>
             </BrowserRouter>

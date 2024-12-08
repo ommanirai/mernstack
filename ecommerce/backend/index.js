@@ -35,7 +35,7 @@ app.use(express.urlencoded({
 // inbuilt middleware
 // file
 // internal serve
-app.use(express.static('uploads'))
+// app.use(express.static('uploads'))
 app.use('/file', express.static(path.join(process.cwd() + "/uploads")))
 
 app.use('/auth', authRouter)

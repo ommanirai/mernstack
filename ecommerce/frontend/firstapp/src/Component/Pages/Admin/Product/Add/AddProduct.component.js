@@ -7,8 +7,21 @@ import { Notification } from "../../../../Utility/toaster"
 
 export const AddProduct = props => {
     const navigate = useNavigate()
-    const add = formData => {
-        httpClient.POST("/product/add", formData, true)
+    const add = (formData, files) => {
+        console.log("data is: ", formData)
+        console.log("file is: ", files)
+        // httpClient.POST("/product/add", formData, true)
+        //     .then(response => {
+        //         console.log("response is: ", response)
+        //         Notification.ShowSuccess(response.data.msg)
+        //         navigate("/product/view")
+
+        //     })
+        //     .catch(err => {
+        //         console.log("error is: ", err)
+        //         HandleError(err)
+        //     })
+        httpClient.UPLOAD("POST", "/product/add", formData, files)
             .then(response => {
                 console.log("response is: ", response)
                 Notification.ShowSuccess(response.data.msg)
