@@ -20,7 +20,7 @@ module.exports = function(req, res, next){
             }
             if(done){
                 req.loggedInUser = done.username
-                console.log("decoded user: ", done)
+                // console.log("decoded user: ", done)
                 next()
             }
         })

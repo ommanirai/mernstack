@@ -13,20 +13,28 @@ export const ViewProduct = props => {
 
     useEffect(function () {
         setIsLoading(true)
-        httpClient.GET("/product/view", true)
-            .then(resposne => {
-                console.log("respone is: ", resposne)
-                setProduct(resposne.data)
-            })
-            .catch(err => {
-                HandleError(err)
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 1000);
-            })
-    }, [])
+        if (props.searchResult) {
+            setProduct(props.searchResult)
+            setIsLoading(false)
+        }
+        else {
+            httpClient.GET("/product/view", true)
+                .then(resposne => {
+                    // console.log("respone is: ", resposne)
+                    setProduct(resposne.data)
+                })
+                .catch(err => {
+                    HandleError(err)
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        setIsLoading(false)
+                    }, 1000);
+                })
+        }
+    }, [props.searchResult])
+
+
 
 
     return (
@@ -51,6 +59,7 @@ export const ViewProduct = props => {
                                             <th>Product color</th>
                                             <th>Product Description</th>
                                             <th>Discounted Item</th>
+                                            <th>Created At</th>
                                             <th>Image</th>
                                             <th>Action</th>
                                         </tr>
@@ -66,11 +75,12 @@ export const ViewProduct = props => {
                                                     <td>{item.product_color}</td>
                                                     <td>{item.product_description}</td>
                                                     <td>{item.product_discount && item.product_discount.discounted_item && "true"}</td>
+                                                    <td>{item.createdAt}</td>
                                                     <td>
                                                         {
-                                                            // console.log("product image is: ",ImageUrl+ item.product_image[0])
+                                                            // console.log("product image is: ",ImageUrl+ item.product_image)
                                                             item.product_image && item.product_image.length > 0 &&
-                                                        <img src={`${ImageUrl}${item.product_image[0]}`} />
+                                                            <img src={`${ImageUrl}${item.product_image[0]}`} style={{ width: "100px", height: "100px" }} />
                                                         }
                                                     </td>
                                                     <td>
@@ -83,6 +93,10 @@ export const ViewProduct = props => {
                                     </tbody>
                                 </table>
                             </>
+                    }
+                    {
+                        props.searchResult &&
+                        <button className="btn btn-primary" onClick={props.searchAgain} >Search Again</button>
                     }
                 </div>
             </div>

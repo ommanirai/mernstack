@@ -24,7 +24,7 @@ export const AddProduct = props => {
         httpClient.UPLOAD("POST", "/product/add", formData, files)
             .then(response => {
                 console.log("response is: ", response)
-                Notification.ShowSuccess(response.data.msg)
+                Notification.ShowSuccess(response.msg)
                 navigate("/product/view")
 
             })

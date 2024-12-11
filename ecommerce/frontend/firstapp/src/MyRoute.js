@@ -10,6 +10,7 @@ import { DeleteCategory } from "./Component/Pages/Admin/Category/Delete/DeleteCa
 import { AddProduct } from "./Component/Pages/Admin/Product/Add/AddProduct.component"
 import { ViewProduct } from "./Component/Pages/Admin/Product/View/ViewProduct.component"
 import { AdminRoute } from "./Component/Utility/AdminRoute"
+import { SearchProduct } from "./Component/Pages/Admin/Product/Search/SearchProduct.component"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -51,6 +52,7 @@ export const MyRoute = props => {
                         <Route path="/category/delete/:category_id" element={<DeleteCategory />} />
                         <Route path="/product/add" element={<AddProduct />} />
                         <Route path="/product/view" element={<ViewProduct />} />
+                        <Route path="/product/search" element={<SearchProduct />} />
                     </Route>
                     <Route path="*" element={<PageNotFound />}></Route>
                 </Routes>

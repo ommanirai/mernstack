@@ -1,7 +1,7 @@
 // const app = require("express")
 // const router = app.Router()
 
-const { addProduct, viewProducts, productDetails, deleteProduct, updateProduct } = require("../controller/product.controller")
+const { addProduct, viewProducts, productDetails, deleteProduct, updateProduct, searchProduct } = require("../controller/product.controller")
 const upload = require("./../middleware/upload")
 const router = require("express").Router()
 
@@ -10,5 +10,6 @@ router.get("/view", viewProducts)
 router.get("/productdetails/:product_id", productDetails)
 router.delete("/deleteproduct/:product_id", deleteProduct)
 router.put("/updateproduct/:product_id", upload.array("img"), updateProduct)
+router.post("/search", searchProduct)
 
 module.exports = router

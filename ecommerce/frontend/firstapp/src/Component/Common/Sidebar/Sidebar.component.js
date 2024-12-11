@@ -35,7 +35,7 @@ export const Sidebar = props => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/admin/dashboard/product/product_search" className="nav-link text-white">
+                        <Link to="/product/search" className="nav-link text-white">
                             {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlink:to="#speedometer2" /></svg> */}
                             Product Search
                         </Link>
