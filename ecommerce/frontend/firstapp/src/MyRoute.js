@@ -11,6 +11,8 @@ import { AddProduct } from "./Component/Pages/Admin/Product/Add/AddProduct.compo
 import { ViewProduct } from "./Component/Pages/Admin/Product/View/ViewProduct.component"
 import { AdminRoute } from "./Component/Utility/AdminRoute"
 import { SearchProduct } from "./Component/Pages/Admin/Product/Search/SearchProduct.component"
+import { ForgotPassword } from "./Component/Auth/ForgotPassword/ForgotPassword.component"
+import { ResetPassword } from "./Component/Auth/ResetPassword/ResetPassword.component"
 
 const Home = props => {
     return <h1>Home Page</h1>
@@ -44,6 +46,8 @@ export const MyRoute = props => {
                     <Route path="/contact" element={<Contact />}></Route>
                     <Route path="/signin" element={<Signin />}></Route>
                     <Route path="/signup" element={<Signup />} ></Route>
+                    <Route path="/forgot-password" element={<ForgotPassword />} ></Route>
+                    <Route path="/reset-password/:token" element={<ResetPassword />} ></Route>
                     <Route path="/" element={<AdminRoute />}>
                         <Route path="/admin/dashbaord" element={<Dashboard />} />
                         <Route path="/cateogory/add" element={<AddCategory />} />

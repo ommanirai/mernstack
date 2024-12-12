@@ -10,6 +10,8 @@ const passwordHash = require("password-hash")
 const upload = require("./../middleware/upload")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
+const nodemailer = require('nodemailer')
+const randomStr = require("randomstring")
 
 // console.log("file directory in auth: ", __dirname)
 // console.log("root directory in auth: ", process.cwd())
@@ -24,6 +26,34 @@ function createToken(user) {
         _id: user._id
     }, process.env.SECRET_KEY)
     return token;
+}
+
+
+
+const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "vedutest1@gmail.com",
+        pass: "mlxt glrj lqhf itcy"
+    }
+})
+
+
+const prepareMail = data => {
+    return {
+        from: 'MERN Stack Support Team', // sender address
+        to: data.email, // list of receivers
+        subject: "Forgot Password ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: `
+        <p>Hi ${data.username},</p>
+        <p>We noticed that you have trouble loggining into our sytem, please use below link to reset your password.</p>
+        <p><a href="${data.link}">click here to reset password</a></p>
+        <p>if you have not requested to reset password, please kindly ignore this email</p>
+        <p>Regards,</p>
+        <p>MERN STACK SUPPORT TEAM, VEDU</p>
+        `, // html body
+    }
 }
 
 
@@ -58,15 +88,15 @@ router.post('/login', function (req, res, next) {
                 if (isMatched) {
                     var token = createToken(user)
                     res.json({
-                        token:token,
+                        token: token,
                         msg: "Logged In Successfully",
                         status: 200,
                         // LoggedInUser: user,
-                        user_details:{
-                            username:user.username,
-                            email:user.email,
-                            role:user.role,
-                            tokens:token
+                        user_details: {
+                            username: user.username,
+                            email: user.email,
+                            role: user.role,
+                            tokens: token
                         }
                     })
                 }
@@ -208,9 +238,9 @@ router.post("/signup", upload.array("img"), function (req, res, next) {
                 new_user.save()
                     .then(function (newUser) {
                         res.json({
-                            msg:"Registration Successfull",
-                            user:newUser,
-                            status:200
+                            msg: "Registration Successfull",
+                            user: newUser,
+                            status: 200
                         })
                     })
                     .catch(function (err) {
@@ -222,6 +252,68 @@ router.post("/signup", upload.array("img"), function (req, res, next) {
             return next(err)
         })
 })
+
+
+
+router.post("/forgot-password", function (req, res, next) {
+    UserModel.findOne({
+        email: req.body.email
+    })
+        .then(function (user) {
+            if (!user) {
+                return next({
+                    msg: "Email Not Registered Yet",
+                    status: 404
+                })
+            }
+            if (user) {
+                
+                var passwordResetToken =  randomStr.generate(16)
+                var userData = {
+                    email: user.email,
+                    username: user.username,
+                    link: `${req.headers.origin}/reset-password/${passwordResetToken}`
+                }
+                var mailContent = prepareMail(userData)
+
+                user.passwordResetToken =passwordResetToken
+                user.passwordResetTokenExpiry = Date.now() + (1000 * 60 * 60 * 24)
+
+                user.save()
+                    .then(user => {
+                        transporter.sendMail(mailContent, function (err, done) {
+                            if (err) {
+                                return next({
+                                    msg: "error in sending mail",
+                                    status: 404
+                                })
+                            }
+                            res.json({
+                                msg: "email sent successfully",
+                                status: 200
+                            })
+                        })
+                    })
+                    .catch(err => {
+                        return next(err)
+                    })
+            }
+        })
+        .catch(function (err) {
+            return next(err)
+        })
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router

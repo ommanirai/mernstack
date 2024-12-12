@@ -107,6 +107,8 @@ export const Signin = props => {
                     isValidForm={isValidForm}
                 ></Button>
                 <p>Don't Have an Account? <Link to={"/signup"} className="text-primary">Sign up</Link> </p>
+
+                <Link to={"/forgot-password"}>Forgot Password?</Link>
             </form>
         </>
     )
